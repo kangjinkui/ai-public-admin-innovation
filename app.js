@@ -114,8 +114,8 @@ const SLIDES = [
 ];
 
 const pad = (n) => String(n).padStart(2, "0");
-const src = (i) => `slides/slide-${pad(i + 1)}.webp`;
-const thumb = (i) => `slides/thumb-${pad(i + 1)}.webp`;
+const src = (i) => `slides/slide-${pad(i + 1)}.webp?v=2`;
+const thumb = (i) => `slides/thumb-${pad(i + 1)}.webp?v=2`;
 const plain = (html) => html.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&");
 
 const $ = (id) => document.getElementById(id);
