@@ -10,6 +10,7 @@
 }
 
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 
 html, body {
   margin: 0;
@@ -101,6 +102,7 @@ main { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
 .thumbs {
   list-style: none; margin: 0; padding: 4px 2px 12px;
   display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x proximity;
+  scrollbar-color: var(--line) transparent;
 }
 .thumbs li { flex: none; scroll-snap-align: center; }
 .thumbs button {
