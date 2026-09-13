@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>행정을 잇는 공공개발 | AI로 잇는 공공행정 혁신</title>
+<meta name="description" content="16년의 현장 경험과 AI 코딩으로 단절된 행정의 흐름을 다시 잇다 — 강남구 도시계획과 강진규 (제16회 지방행정의 달인, 일반행정 분야)">
+<meta property="og:title" content="행정을 잇는 공공개발">
+<meta property="og:description" content="16년의 현장 경험과 AI 코딩으로 단절된 행정의 흐름을 다시 잇다">
+<meta property="og:image" content="slides/slide-01.webp">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0b1a36">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <span class="dot" aria-hidden="true"></span>
+    <div>
+      <h1>행정을 잇는 공공개발</h1>
+      <p>AI로 잇는 공공행정 혁신 · 강남구 도시계획과 강진규</p>
+    </div>
+  </div>
+  <nav class="actions">
+    <button id="gridBtn" type="button" aria-pressed="false">전체 보기</button>
+    <button id="fsBtn" type="button">전체 화면</button>
+    <a class="primary" href="presentation.pdf" download="AI로_잇는_공공행정_혁신.pdf">PDF 다운로드</a>
+  </nav>
+</header>
+
+<main>
+  <section id="viewer" class="viewer" aria-roledescription="carousel" aria-label="발표 슬라이드">
+    <div class="stage" id="stage">
+      <img id="slideImg" src="slides/slide-01.webp" alt="" width="1376" height="768">
+      <button class="nav prev" id="prevBtn" type="button" aria-label="이전 슬라이드">‹</button>
+      <button class="nav next" id="nextBtn" type="button" aria-label="다음 슬라이드">›</button>
+    </div>
+    <div class="bar">
+      <span id="counter" aria-live="polite">1 / 13</span>
+      <div class="progress" aria-hidden="true"><span id="progress"></span></div>
+      <span class="hint">← → 키 또는 스와이프로 이동</span>
+    </div>
+    <ol class="thumbs" id="thumbs"></ol>
+  </section>
+
+  <section id="grid" class="grid" hidden aria-label="전체 슬라이드 목록"></section>
+
+  <section class="notes" aria-labelledby="notesTitle">
+    <h2 id="notesTitle"><span id="noteNum">01</span> <span id="noteTitle"></span></h2>
+    <div id="noteBody"></div>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>제16회 지방행정의 달인 · 일반행정 분야 · 강남구 도시계획과 강진규</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
