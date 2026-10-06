@@ -1,0 +1,334 @@
+{
+  "_note": "발표자료에 등장하는 모든 수치의 원장. verify.js가 슬라이드 본문·노트의 수치 토큰을 이 목록과 대조한다. source의 SOURCE는 NotebookLM_행정을_잇는_공공개발의_달인_소스.md.",
+  "facts": [
+    {
+      "id": "career",
+      "label": "행정 근무 경력",
+      "tokens": [
+        "16년"
+      ],
+      "source": "SOURCE §1·§11"
+    },
+    {
+      "id": "rotation",
+      "label": "순환보직 주기",
+      "tokens": [
+        "2~3년"
+      ],
+      "source": "SOURCE §9"
+    },
+    {
+      "id": "hbc-active-parties",
+      "label": "활성 정당",
+      "tokens": [
+        "13개"
+      ],
+      "source": "SOURCE §4, hbc.ai.kr 공개 화면"
+    },
+    {
+      "id": "hbc-active",
+      "label": "활성 정당현수막",
+      "tokens": [
+        "54건"
+      ],
+      "source": "SOURCE §4"
+    },
+    {
+      "id": "hbc-expired",
+      "label": "만료 정당현수막",
+      "tokens": [
+        "53건"
+      ],
+      "source": "SOURCE §4"
+    },
+    {
+      "id": "hbc-dong-limit",
+      "label": "행정동별 정당 현수막 강조 기준",
+      "tokens": [
+        "2개"
+      ],
+      "source": "SOURCE §4"
+    },
+    {
+      "id": "hbc-public",
+      "label": "공공·집회시위 현수막",
+      "tokens": [
+        "26건",
+        "24건",
+        "2건",
+        "4건"
+      ],
+      "source": "SOURCE §4"
+    },
+    {
+      "id": "hbc-period",
+      "label": "민원 비교 기간",
+      "tokens": [
+        "1~3월",
+        "4~6월"
+      ],
+      "source": "SOURCE §4"
+    },
+    {
+      "id": "hbc-c-expired",
+      "label": "기간 경과 민원",
+      "tokens": [
+        "11.3건",
+        "3.3건",
+        "약 70%",
+        "70%"
+      ],
+      "source": "SOURCE §4"
+    },
+    {
+      "id": "hbc-c-banned",
+      "label": "금지 장소 설치 민원",
+      "tokens": [
+        "3.3건",
+        "0건"
+      ],
+      "source": "SOURCE §4"
+    },
+    {
+      "id": "hbc-c-method",
+      "label": "설치 방법 위반 민원",
+      "tokens": [
+        "7.7건",
+        "2.7건",
+        "약 65%",
+        "65%"
+      ],
+      "source": "SOURCE §4"
+    },
+    {
+      "id": "hbc-c-etc",
+      "label": "기타 민원(증가)",
+      "tokens": [
+        "6.7건",
+        "12.7건"
+      ],
+      "source": "SOURCE §4"
+    },
+    {
+      "id": "hbc-inquiries",
+      "label": "도입 문의 기관 수(성북구·파주시·경남도청·세종시·동작구·김포시·대전 동구청)",
+      "tokens": [
+        "7개",
+        "7곳"
+      ],
+      "source": "SOURCE §4 (기관 목록 계수)"
+    },
+    {
+      "id": "hbc-cost",
+      "label": "현수막 시스템 독학·비용(언론 표현)",
+      "tokens": [
+        "3개월",
+        "6만원"
+      ],
+      "source": "조선비즈 2025.05.10"
+    },
+    {
+      "id": "hbc-overview-time",
+      "label": "전체 현황 파악",
+      "tokens": [
+        "1일"
+      ],
+      "source": "SOURCE §4 업무 방식 변화"
+    },
+    {
+      "id": "hbc-stages",
+      "label": "개발 단계(Bubble → 바이브코딩 → 통합 플랫폼)",
+      "tokens": [
+        "1단계",
+        "2단계",
+        "3단계"
+      ],
+      "source": "SOURCE §4 개발 과정"
+    },
+    {
+      "id": "ad-period",
+      "label": "옥외광고 3종 개발기간",
+      "tokens": [
+        "약 35일",
+        "35일",
+        "3종"
+      ],
+      "source": "SOURCE §5 (2026. 2. 24. ~ 2026. 3. 29.)"
+    },
+    {
+      "id": "ad-budget",
+      "label": "개발예산",
+      "tokens": [
+        "0원"
+      ],
+      "source": "SOURCE §6"
+    },
+    {
+      "id": "ad-review-time",
+      "label": "민원 검토시간",
+      "tokens": [
+        "10~15분",
+        "1분",
+        "1건"
+      ],
+      "source": "SOURCE §6, 뉴시스 2026.06.17"
+    },
+    {
+      "id": "ad-judge-time",
+      "label": "판정 산출",
+      "tokens": [
+        "1초"
+      ],
+      "source": "SOURCE §6"
+    },
+    {
+      "id": "ad-types",
+      "label": "판정 대상 광고물",
+      "tokens": [
+        "13종"
+      ],
+      "source": "SOURCE §6, signcheck/docs/01-plan/features/광고판정.plan.md"
+    },
+    {
+      "id": "ad-variables",
+      "label": "판단 기준(종류·면적·층수·조명·용도지역·특정구역·심의대상)",
+      "tokens": [
+        "7가지"
+      ],
+      "source": "SOURCE §5 (항목 계수)"
+    },
+    {
+      "id": "ad-layers",
+      "label": "규칙 엔진 단계 / 법령 층위",
+      "tokens": [
+        "4단계",
+        "4개"
+      ],
+      "source": "SOURCE §6"
+    },
+    {
+      "id": "ad-impl-match",
+      "label": "설계 대비 구현 일치율(개발 검증 지표, 실측 판정정확도 아님)",
+      "tokens": [
+        "84%",
+        "98%",
+        "3회",
+        "65개",
+        "64개"
+      ],
+      "source": "signcheck/docs/03-analysis/db.analysis.md"
+    },
+    {
+      "id": "permit-press",
+      "label": "허가DB 관리현황(보도자료 기준)",
+      "tokens": [
+        "148건",
+        "70건",
+        "95건"
+      ],
+      "source": "SOURCE §7"
+    },
+    {
+      "id": "permit-app",
+      "label": "허가DB 관리현황(적극행정 신청서 기준)",
+      "tokens": [
+        "112건",
+        "46건",
+        "71건",
+        "87건"
+      ],
+      "source": "SOURCE §7"
+    },
+    {
+      "id": "distance",
+      "label": "대형 디지털 광고물 위치 DB / 거리제한",
+      "tokens": [
+        "48개소",
+        "200m"
+      ],
+      "source": "SOURCE §8"
+    },
+    {
+      "id": "wiki-cases",
+      "label": "실제 업무 질의·응답",
+      "tokens": [
+        "265건",
+        "11개"
+      ],
+      "source": "SOURCE §9"
+    },
+    {
+      "id": "wiki-breakdown",
+      "label": "유형별 건수(복수 분류)",
+      "tokens": [
+        "89건",
+        "51건",
+        "44건",
+        "42건"
+      ],
+      "source": "증빙자료 09_llm_wiki_evidence"
+    },
+    {
+      "id": "wiki-steps",
+      "label": "파이프라인 단계",
+      "tokens": [
+        "6단계"
+      ],
+      "source": "SOURCE §9 (단계 계수)"
+    },
+    {
+      "id": "systems",
+      "label": "시스템 수",
+      "tokens": [
+        "4개",
+        "6가지"
+      ],
+      "source": "SOURCE §1·§3 (계수)"
+    },
+    {
+      "id": "dj-data",
+      "label": "AI 당직 분석 자료(당직일지·실통화)",
+      "tokens": [
+        "2,370건",
+        "253건"
+      ],
+      "source": "AI 당직 통화시스템 개발 추진 결과 보고(2026. 9. 30.)"
+    },
+    {
+      "id": "dj-share",
+      "label": "AI 당직 민원 분야 비중",
+      "tokens": [
+        "23.3%",
+        "22.9%",
+        "11.8%",
+        "6.5%"
+      ],
+      "source": "AI 당직 통화시스템 개발 추진 결과 보고(2026. 9. 30.)"
+    },
+    {
+      "id": "dj-fix",
+      "label": "매뉴얼 문구 원본 대조 수정",
+      "tokens": [
+        "22건"
+      ],
+      "source": "AI 당직 통화시스템 개발 추진 결과 보고(2026. 9. 30.)"
+    },
+    {
+      "id": "dj-tests",
+      "label": "AI 당직 자동 시험 통과(9. 30. 기준, 실통화 횟수 아님)",
+      "tokens": [
+        "827건"
+      ],
+      "source": "AI 당직 통화시스템 개발 추진 결과 보고(2026. 9. 30.)"
+    },
+    {
+      "id": "dj-period",
+      "label": "AI 당직 개발기간(2026. 8. 20. ~ 9. 23.)",
+      "tokens": [
+        "약 5주",
+        "5주"
+      ],
+      "source": "AI 당직 통화시스템 개발 추진 결과 보고(2026. 9. 30.)"
+    }
+  ]
+}
