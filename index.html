@@ -2,60 +2,743 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>행정을 잇는 공공개발 | AI로 잇는 공공행정 혁신</title>
-<meta name="description" content="16년의 현장 경험과 AI 코딩으로 단절된 행정의 흐름을 다시 잇다 — 강남구 도시계획과 강진규 (제16회 지방행정의 달인, 일반행정 분야)">
-<meta property="og:title" content="행정을 잇는 공공개발">
-<meta property="og:description" content="16년의 현장 경험과 AI 코딩으로 단절된 행정의 흐름을 다시 잇다">
-<meta property="og:image" content="slides/slide-01.webp?v=2">
-<meta property="og:type" content="website">
-<meta name="theme-color" content="#0b1a36">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>">
-<link rel="stylesheet" href="styles.css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>행정을 잇는 공공개발의 달인</title>
+<meta name="description" content="제16회 지방행정의 달인 현장실사 발표 — 서울특별시 강남구 도시계획과 강진규">
+<meta property="og:title" content="행정을 잇는 공공개발의 달인">
+<meta property="og:description" content="수기·엑셀·한글파일과 담당자의 기억에 의존하던 행정을 지도·DB·자동판정·지식관리·자동수합 체계로">
+<meta name="theme-color" content="#13213b">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='30' cy='50' r='18' fill='none' stroke='%2313213b' stroke-width='10'/><circle cx='70' cy='50' r='18' fill='none' stroke='%23c2410c' stroke-width='10'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f6f4ef;--paper2:#ece8df;--white:#fffefb;--ink:#13213b;--ink2:#2b3a55;--muted:#5d6676;
+  --line:rgba(19,33,59,.14);--accent:#c2410c;--accent-soft:#fbe7dc;--teal:#0f766e;--teal-soft:#d9efeb;
+  --night:#13213b;--night2:#1c2d4d;--gray-bar:#b9bfca;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#0d1628;color:var(--ink);font-family:"Noto Sans KR","Malgun Gothic",sans-serif;word-break:keep-all;overflow-wrap:break-word;font-variant-numeric:tabular-nums}
+button,a{font:inherit;color:inherit}
+#viewport{position:relative;width:100vw;height:100vh;overflow:hidden}
+#deck{position:absolute;width:1920px;height:1080px;transform-origin:top left}
+.slide{position:absolute;inset:0;display:none;padding:80px 110px 96px;background:var(--paper);overflow:hidden}
+.slide.active{display:flex;flex-direction:column}
+.body{flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0;padding-bottom:28px}
+.slide.dark{background:var(--night);color:#f3f5f9}
+.eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:22px;color:var(--teal);font-size:21px;font-weight:800;letter-spacing:.08em}
+.eyebrow:before{content:"";width:40px;height:4px;background:var(--accent)}
+.dark .eyebrow{color:#8fd3c9}
+h1,h2,h3,p,ul,ol{margin-top:0}
+h1{font-size:96px;line-height:1.1;letter-spacing:-.045em;margin-bottom:34px}
+h2{font-size:56px;line-height:1.22;letter-spacing:-.035em;margin-bottom:40px;max-width:1650px}
+h3{font-size:30px;line-height:1.3;letter-spacing:-.02em;margin-bottom:12px}
+p{font-size:25px;line-height:1.6;color:var(--muted)}
+.dark p{color:#c9d2e3}
+.lead{font-size:36px;line-height:1.55;color:var(--ink);max-width:1500px}
+.dark .lead{color:#eef1f7}
+.accent{color:var(--accent)}.teal{color:var(--teal)}
+.serif{font-family:"Noto Serif KR",serif}
+.src{position:absolute;left:110px;right:110px;bottom:34px;display:flex;justify-content:space-between;gap:40px;font-size:16px;color:rgba(19,33,59,.5);line-height:1.4}
+.dark .src{color:rgba(255,255,255,.45)}
+.src .pg{flex:none;font-weight:700}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:30px 32px}
+.card p{font-size:22px;margin-bottom:0}
+.dark .card{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14)}
+.pill{display:inline-block;margin:0 8px 10px 0;padding:9px 16px;border-radius:999px;background:var(--paper2);font-size:19px;font-weight:700;color:var(--ink2)}
+.dark .pill{background:rgba(255,255,255,.1);color:#e7ecf5}
+.shot{margin:0}
+.shot img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:12px;box-shadow:0 18px 50px rgba(19,33,59,.12);background:#fff}
+.shot figcaption{margin-top:12px;font-size:17px;color:var(--muted)}
+.live{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border:1.5px solid var(--teal);border-radius:999px;color:var(--teal);font-size:18px;font-weight:700;text-decoration:none;background:var(--white)}
+.live:hover,.live:focus-visible{background:var(--teal);color:#fff;outline:none}
+.flow{display:flex;align-items:stretch;gap:10px}
+.step{flex:1;padding:22px 20px;border:1px solid var(--line);background:var(--white);border-radius:12px;display:flex;flex-direction:column;gap:8px}
+.step b{font-size:16px;color:var(--teal);letter-spacing:.04em}
+.step span{font-size:23px;font-weight:800;line-height:1.35}
+.step small{font-size:17px;color:var(--muted);line-height:1.45}
+.step.key{background:var(--accent);border-color:var(--accent);color:#fff}
+.step.key b,.step.key small{color:#fff3ec}
+.arrow{display:grid;place-items:center;color:var(--accent);font-size:30px;font-weight:700}
+.ba{display:grid;grid-template-columns:1fr 80px 1fr;align-items:stretch}
+.panel{border:1px solid var(--line);border-radius:16px;padding:32px 36px;background:var(--white)}
+.panel.after{background:var(--night);color:#fff;border-color:var(--night)}
+.panel.after p{color:#c9d2e3}
+.panel h3{margin-bottom:18px}
+.panel ul{margin:0;padding-left:26px;font-size:23px;line-height:1.75}
+.center-arrow{display:grid;place-items:center;font-size:46px;color:var(--accent)}
+.stat{display:flex;flex-direction:column;gap:8px}
+.stat strong{font-family:"Noto Serif KR",serif;font-size:76px;line-height:1.05;color:var(--accent);letter-spacing:-.02em}
+.stat span{font-size:21px;font-weight:700;color:var(--ink2)}
+.stat small{font-size:17px;color:var(--muted);line-height:1.45}
+.dark .stat span{color:#e7ecf5}.dark .stat small{color:#aab6cc}
+table.t{width:100%;border-collapse:collapse;font-size:21px;line-height:1.45;background:var(--white);border-radius:14px;overflow:hidden}
+table.t th,table.t td{padding:15px 18px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+table.t th{background:var(--paper2);font-weight:800;color:var(--ink2);font-size:18px}
+table.t td.num,table.t th.num{text-align:right;white-space:nowrap}
+table.t tr:last-child td{border-bottom:0}
+.quote{font-family:"Noto Serif KR",serif;font-size:60px;line-height:1.42;font-weight:700;letter-spacing:-.03em}
+.note-box{border-left:5px solid var(--teal);background:var(--teal-soft);padding:18px 24px;border-radius:0 12px 12px 0;font-size:20px;line-height:1.55;color:var(--ink2)}
+.warn-box{border-left:5px solid var(--accent);background:var(--accent-soft);padding:18px 24px;border-radius:0 12px 12px 0;font-size:20px;line-height:1.55;color:var(--ink2)}
+.tag{display:inline-block;padding:4px 12px;border-radius:999px;font-size:16px;font-weight:800;background:var(--teal-soft);color:var(--teal);margin-right:6px}
+.tag.o{background:var(--accent-soft);color:var(--accent)}
+aside.notes{display:none}
+.stamp{position:absolute;right:110px;top:84px;padding:8px 16px;border:2px dashed var(--accent);border-radius:8px;color:var(--accent);font-size:17px;font-weight:900;letter-spacing:.12em;transform:rotate(2deg)}
+.slide.bonus{background:linear-gradient(180deg,#fbf0e6 0,var(--paper) 260px)}
+.bars{display:flex;flex-direction:column;gap:16px}
+.bar-row{display:grid;grid-template-columns:150px 1fr 90px;align-items:center;gap:16px;font-size:21px}
+.bar-row span{font-weight:700;color:var(--ink2)}
+.bar-row i{display:block;height:30px;border-radius:0 6px 6px 0;background:var(--accent)}
+.bar-row b{font-family:"Noto Serif KR",serif;font-size:26px;color:var(--accent);text-align:right}
+/* 컨트롤 */
+#controls{position:fixed;z-index:30;left:50%;bottom:14px;transform:translateX(-50%);display:flex;align-items:center;gap:4px;padding:6px 10px;border-radius:999px;background:rgba(13,22,40,.92);color:#fff;opacity:0;transition:opacity .2s}
+#controls.visible,#controls:hover,#controls:focus-within{opacity:1}
+#controls button{min-width:40px;height:36px;padding:0 10px;border:0;border-radius:18px;background:transparent;color:#fff;cursor:pointer;font-size:14px}
+#controls button:hover,#controls button:focus-visible{background:var(--accent);outline:none}
+.ctl-link{display:inline-flex;align-items:center;height:36px;padding:0 12px;border-radius:18px;color:#fff;font-size:14px;text-decoration:none}
+.ctl-link:hover,.ctl-link:focus-visible{background:var(--accent);outline:none}
+#counter{min-width:70px;text-align:center;font-size:14px}
+#progress{position:fixed;z-index:31;top:0;left:0;height:4px;background:var(--accent);transition:width .25s}
+#overview{position:fixed;z-index:50;inset:0;display:none;background:#0d1628;padding:28px;overflow:auto}
+#overview.open{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;align-content:start}
+.thumb{aspect-ratio:16/9;background:var(--paper);color:var(--ink);padding:20px;border:2px solid transparent;border-radius:10px;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:8px}
+.thumb:hover,.thumb:focus-visible{border-color:var(--accent);outline:none}
+.thumb b{color:var(--accent);font-size:14px}.thumb strong{font-size:20px;line-height:1.3}
+#notesPanel{position:fixed;z-index:40;left:0;right:0;bottom:0;max-height:38vh;overflow:auto;display:none;background:rgba(13,22,40,.96);color:#eef1f7;padding:20px 28px 64px;font-size:18px;line-height:1.7;border-top:3px solid var(--accent)}
+#notesPanel.open{display:block}
+#notesPanel h4{margin:0 0 6px;font-size:14px;letter-spacing:.08em;color:#8fd3c9}
+#notesPanel p{color:#eef1f7;font-size:18px;margin:0 0 8px}
+@media print{
+  @page{size:13.333in 7.5in;margin:0}
+  html,body,#viewport{width:auto;height:auto;overflow:visible;background:#fff}
+  #deck{position:static;transform:none!important;width:1920px;height:auto}
+  .slide{position:relative;display:flex!important;flex-direction:column;width:1920px;height:1080px;break-after:page}
+  #controls,#progress,#overview,#notesPanel,.live{display:none!important}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
 </head>
 <body>
-<header class="top">
-  <div class="brand">
-    <span class="dot" aria-hidden="true"></span>
+<div id="viewport"><div id="deck">
+
+<!-- 01 표지 -->
+<section class="slide dark" id="s1" data-title="표지">
+  <div style="position:absolute;right:110px;top:90px;width:520px;height:520px" aria-hidden="true">
+    <svg viewBox="0 0 520 520" width="520" height="520">
+      <g fill="none" stroke-width="3">
+        <circle cx="120" cy="140" r="54" stroke="#8fd3c9"/><circle cx="400" cy="120" r="54" stroke="#8fd3c9"/>
+        <circle cx="140" cy="400" r="54" stroke="#8fd3c9"/><circle cx="390" cy="390" r="54" stroke="#f08a5d"/>
+        <path d="M174 140 L346 122 M120 194 L136 346 M194 400 L336 392 M400 174 L392 336 M160 180 L350 350" stroke="rgba(255,255,255,.35)" stroke-dasharray="6 8"/>
+      </g>
+      <g font-family="Noto Sans KR" font-size="22" font-weight="700" fill="#e7ecf5" text-anchor="middle">
+        <text x="120" y="148">현장</text><text x="400" y="128">사무실</text><text x="140" y="408">법령</text><text x="390" y="398">조직</text>
+      </g>
+    </svg>
+  </div>
+  <div style="position:absolute;left:110px;bottom:170px;max-width:1250px">
+    <div class="eyebrow">제16회 지방행정의 달인 · 일반행정 분야 현장실사</div>
+    <h1>행정을 잇는<br>공공개발의 달인</h1>
+    <p class="lead">수기·엑셀·한글파일과 담당자의 기억에 의존하던 행정을<br>지도·DB·자동판정·지식관리·자동수합 체계로 전환했습니다.</p>
+    <p style="margin-top:40px;font-size:26px;color:#e7ecf5;font-weight:700">서울특별시 강남구 도시계획과 강진규</p>
+  </div>
+  <div class="src"><span>발표용 웹 자료 · ← → 이동 · N 발표자 노트 · O 전체 보기</span><span class="pg">01</span></div>
+  <aside class="notes"><p>안녕하십니까. 강남구 도시계획과 강진규입니다.</p><p>오늘은 여러 개의 프로그램을 소개하기보다, 16년간 행정 현장에서 발견한 '끊어진 지점'을 어떻게 이어왔는지 말씀드리겠습니다.</p></aside>
+</section>
+
+<!-- 02 문제의식 -->
+<section class="slide" id="s2" data-title="문제의식: 흐름의 단절">
+  <div class="eyebrow">문제의식</div>
+  <h2>행정의 어려움은 제도의 부족만이 아니라,<br><span class="accent">정보와 업무 흐름이 끊어진 데서</span> 생깁니다</h2>
+  <div class="body">
+  <div class="grid3" style="gap:22px">
+    <div class="card"><h3>현장 ↔ 사무실</h3><p>현수막 위치·기간을 수기·엑셀로 관리하여 민원이 들어온 뒤에야 현장을 확인</p><p style="margin-top:14px"><span class="tag">정당현수막 관리시스템</span></p></div>
+    <div class="card"><h3>민원 ↔ 담당자</h3><p>같은 문의에도 담당자 경험에 따라 안내 내용과 판정 속도가 달라질 수 있음</p><p style="margin-top:14px"><span class="tag">AdJudge 광고판정</span></p></div>
+    <div class="card"><h3>데이터 ↔ 판단</h3><p>허가대장·심의·점검 정보가 여러 문서에 흩어지고, 200m 이격거리는 지도와 자료를 수작업 대조</p><p style="margin-top:14px"><span class="tag">허가·신고 DB</span><span class="tag">200m 분석</span></p></div>
+    <div class="card"><h3>법령 원문 ↔ 담당자 경험</h3><p>법령·조례·심의기준과 실제 민원사례가 연결되지 않고 개인의 기억에 머묾</p><p style="margin-top:14px"><span class="tag">판돌이 LLM wiki</span></p></div>
+    <div class="card"><h3>작성자 ↔ 수합자</h3><p>팀별 한글파일을 받아 붙여넣고 순서·양식을 고치는 작업이 매 회차 반복</p><p style="margin-top:14px"><span class="tag">격주 업무보고 수합판</span></p></div>
+    <div class="card"><h3>전임자 ↔ 후임자</h3><p>2~3년 주기의 순환보직으로 법령 해석 경험과 민원 대응 암묵지가 사라짐</p><p style="margin-top:14px"><span class="tag">판돌이 LLM wiki</span></p></div>
+  </div>
+  </div>
+  <div class="src"><span>출처: 달인 신청서·증빙자료(NotebookLM 소스 §1)</span><span class="pg">02</span></div>
+  <aside class="notes"><p>행정의 어려움은 거창한 제도의 부족보다, 정보와 업무 흐름이 끊어진 데서 생긴다고 봤습니다.</p><p>현장과 사무실, 민원과 담당자, 데이터와 판단, 법령과 경험, 작성자와 수합자, 전임자와 후임자. 이 여섯 가지 단절을 하나씩 이어온 이야기입니다.</p></aside>
+</section>
+
+<!-- 03 성과 지도 -->
+<section class="slide" id="s3" data-title="전체 성과 지도">
+  <div class="eyebrow">전체 성과 지도</div>
+  <h2>서로 다른 시스템, 같은 문제의식</h2>
+  <div class="body">
+  <table class="t">
+    <thead><tr><th style="width:17%">시스템</th><th style="width:30%">기존 문제</th><th style="width:30%">전환</th><th>확인된 성과</th></tr></thead>
+    <tbody>
+      <tr><td><b>정당현수막 관리</b><br><a class="live" style="margin-top:8px;font-size:15px;padding:6px 12px" href="https://hbc.ai.kr/" target="_blank" rel="noopener">hbc.ai.kr ↗</a></td><td>위치·게시기간·철거 여부를 수기·엑셀로 관리</td><td>카카오맵 위치관리, 목록·통계·만료관리</td><td>기간 경과 민원 <b class="accent">약 70% 감소</b>, 금지 장소 설치 민원 <b class="accent">0건</b></td></tr>
+      <tr><td><b>옥외광고 3종</b><br><a class="live" style="margin-top:8px;font-size:15px;padding:6px 12px" href="https://signcheck.vercel.app/" target="_blank" rel="noopener">AdJudge ↗</a></td><td>법령·조례·심의기준 수동 대조, 대장 분산, 거리 수작업 검토</td><td>자동판정 · 허가·신고 통합 DB · 200m 거리 분석</td><td>검토시간 <b class="accent">10~15분 → 1분 이내</b>, 광고물 13종 판정</td></tr>
+      <tr><td><b>판돌이 LLM wiki</b></td><td>순환보직으로 법령 해석 경험과 암묵지 휘발</td><td>AI 초안 → 원문 검증 → 사람 승인 → wiki 승격</td><td>실제 업무 질의·응답 <b class="accent">265건</b>, 11개 유형 분류</td></tr>
+      <tr><td><b>격주 업무보고 수합판</b><br><a class="live" style="margin-top:8px;font-size:15px;padding:6px 12px" href="https://biweekly-report-board.vercel.app" target="_blank" rel="noopener">수합판 ↗</a></td><td>팀별 한글파일 제출·붙여넣기·양식 수정 반복</td><td>웹 입력 · 자동저장 · 자동수합 · PDF 출력</td><td>작성자는 덜 쓰고, 수합자는 덜 고치는 구조</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top:22px;font-size:20px">모두 별도 예산·외부 용역 없이 AI 코딩 도구·노코드·바이브 코딩으로 자체 구축</p>
+  </div>
+  <div class="src"><span>출처: NotebookLM 소스 §3 · 각 시스템 공개 URL</span><span class="pg">03</span></div>
+  <aside class="notes"><p>전체 그림입니다. 현장 업무인 정당현수막, 복잡한 법령 판단이 필요한 옥외광고, 그리고 조직 내부의 지식관리와 보고 업무까지 네 갈래입니다.</p><p>각 시스템은 지금도 접속 가능한 주소가 있어 질문 주시면 바로 보여드리겠습니다.</p></aside>
+</section>
+
+<!-- 04 현수막 기존 문제 -->
+<section class="slide" id="s4" data-title="정당현수막: 기존 문제">
+  <div class="eyebrow">01 · 정당현수막 관리시스템</div>
+  <h2>민원이 들어와야 움직이던 현수막 관리</h2>
+  <div class="body">
+  <div class="ba" style="margin-bottom:34px">
+    <div class="panel"><h3>기존 흐름</h3><p style="font-size:26px;color:var(--ink);font-weight:700;margin:0">민원 접수 → 현장 확인 → 수기·엑셀 기록</p><p style="margin:14px 0 0">설치 위치·게시기간·정당별 현황·철거 여부를 담당자의 경험과 기억에 의존</p></div>
+    <div class="center-arrow">→</div>
+    <div class="panel after"><h3>전환 후</h3><p style="font-size:26px;color:#fff;font-weight:700;margin:0">지도에서 만료 위치 확인 → 사전 정비</p><p style="margin:14px 0 0">현장에 나가기 전에 정비 대상을 선정</p></div>
+  </div>
+  <table class="t">
+    <thead><tr><th style="width:22%">항목</th><th>시스템 도입 전</th><th>시스템 도입 후</th></tr></thead>
+    <tbody>
+      <tr><td><b>전체 현황 파악</b></td><td>1일 이상 소요</td><td>반나절 이내 확인 가능한 구조</td></tr>
+      <tr><td><b>위반 여부 확인</b></td><td>현장 방문 중심</td><td>시스템 기반 사전 정비 가능</td></tr>
+      <tr><td><b>자료 공유</b></td><td>수작업·엑셀 중심</td><td>통합 시스템 입력 기반</td></tr>
+      <tr><td><b>민원 대응</b></td><td>사후적·수동 대응</td><td>사전 정비 + 신속 대응</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="src"><span>출처: 달인 신청서·한국일보 동행취재 자료(NotebookLM 소스 §4 업무 방식 변화)</span><span class="pg">04</span></div>
+  <aside class="notes"><p>정당현수막은 설치 위치와 게시기간, 정당별 현황을 수기와 엑셀로 관리했습니다. 그래서 전체 현황을 보는 데만 하루 이상 걸렸고, 민원이 들어와야 현장에 나가는 구조였습니다.</p></aside>
+</section>
+
+<!-- 05 hbc 화면 -->
+<section class="slide" id="s5" data-title="정당현수막: 지도·목록·통계·만료">
+  <div class="eyebrow">01 · 정당현수막 관리시스템</div>
+  <h2 style="margin-bottom:30px">지도 한 화면에서 활성·만료 현수막을 구분합니다</h2>
+  <div class="body">
+  <div style="display:grid;grid-template-columns:1.45fr 1fr;gap:48px;align-items:start">
+    <figure class="shot"><img src="assets/screens/hbc-map.webp" alt="hbc.ai.kr 정당 현수막 지도 화면: 전체 현수막, 활성 정당 13, 활성 현수막 54, 만료 53 카드와 강남구 지도 위 정당별 마커" width="1365" height="760"><figcaption>hbc.ai.kr 공개 화면 — 활성 정당 13개 · 활성 54건 · 만료 53건</figcaption></figure>
     <div>
-      <h1>행정을 잇는 공공개발</h1>
-      <p>AI로 잇는 공공행정 혁신 · 강남구 도시계획과 강진규</p>
+      <h3 style="margin-bottom:18px">개발 과정</h3>
+      <div class="flow" style="flex-direction:column;gap:10px;margin-bottom:28px">
+        <div class="step"><b>1단계</b><span>Bubble 노코드 시제품</span><small>입력 구조·DB·지도 마커로 현장 흐름 검증</small></div>
+        <div class="step"><b>2단계</b><span>바이브 코딩 고도화</span><small>지도·목록·통계·만료 화면, 필터·엑셀 내보내기</small></div>
+        <div class="step"><b>3단계</b><span>통합 현수막 플랫폼</span><small>공공·집회시위 현수막까지 확대</small></div>
+      </div>
+      <div><span class="pill">카카오맵 위치 시각화</span><span class="pill">정당·행정동·상태 필터</span><span class="pill">주소·문구 검색</span><span class="pill">엑셀 내보내기</span><span class="pill">행정동별 2개 초과 강조</span></div>
+      <p style="margin-top:18px"><a class="live" href="https://hbc.ai.kr/" target="_blank" rel="noopener">라이브로 보기 · hbc.ai.kr ↗</a></p>
     </div>
   </div>
-  <nav class="actions">
-    <button id="gridBtn" type="button" aria-pressed="false">전체 보기</button>
-    <button id="fsBtn" type="button">전체 화면</button>
-    <a class="primary" href="presentation.pdf" download="AI로_잇는_공공행정_혁신.pdf">PDF 다운로드</a>
-  </nav>
-</header>
+  </div>
+  <div class="src"><span>출처: hbc.ai.kr 공개 화면(NotebookLM 소스 §4) · 화면 캡처는 증빙자료</span><span class="pg">05</span></div>
+  <aside class="notes"><p>처음엔 Bubble이라는 노코드 도구로 시제품을 만들어 현장 흐름이 맞는지부터 검증했고, 이후 AI와 대화하며 기능을 하나씩 만들어 지금의 hbc.ai.kr로 고도화했습니다.</p><p>지도에서 정당별 마커와 만료 현수막을 구분해 보고, 행정동별로 2개를 넘는 경우는 강조해서 보여줍니다. 담당자는 현장에 나가기 전에 정비 대상을 고를 수 있습니다.</p></aside>
+</section>
 
-<main>
-  <section id="viewer" class="viewer" aria-roledescription="carousel" aria-label="발표 슬라이드">
-    <div class="stage" id="stage">
-      <img id="slideImg" src="slides/slide-01.webp?v=2" alt="" width="1376" height="768">
-      <button class="nav prev" id="prevBtn" type="button" aria-label="이전 슬라이드">‹</button>
-      <button class="nav next" id="nextBtn" type="button" aria-label="다음 슬라이드">›</button>
+<!-- 06 현수막 성과 -->
+<section class="slide" id="s6" data-title="정당현수막: 민원 감소 성과">
+  <div class="eyebrow">01 · 정당현수막 관리시스템 · 성과</div>
+  <h2 style="margin-bottom:26px">사후 대응을 데이터 기반 선제 관리로 바꾸자 <span class="accent">유형별 민원이 줄었습니다</span></h2>
+  <div class="body">
+  <div style="display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:start">
+    <div>
+      <svg viewBox="0 0 820 420" width="820" height="420" role="img" aria-label="월평균 민원 건수 비교. 기간 경과 11.3건에서 3.3건, 금지 장소 설치 3.3건에서 0건, 설치 방법 위반 7.7건에서 2.7건">
+        <g font-family="Noto Sans KR" font-size="19" fill="#5d6676">
+          <line x1="40" y1="330" x2="800" y2="330" stroke="#13213b" stroke-opacity=".25"/>
+          <!-- 기간 경과 -->
+          <rect x="80" y="85" width="90" height="245" rx="4" fill="#b9bfca"/><rect x="182" y="258" width="90" height="72" rx="4" fill="#c2410c"/>
+          <text x="125" y="72" text-anchor="middle" font-weight="700" fill="#2b3a55">11.3건</text><text x="227" y="245" text-anchor="middle" font-weight="800" fill="#c2410c">3.3건</text>
+          <!-- 금지 장소 -->
+          <rect x="330" y="258" width="90" height="72" rx="4" fill="#b9bfca"/><rect x="432" y="328" width="90" height="2" fill="#c2410c"/>
+          <text x="375" y="245" text-anchor="middle" font-weight="700" fill="#2b3a55">3.3건</text><text x="477" y="315" text-anchor="middle" font-weight="800" fill="#c2410c">0건</text>
+          <!-- 설치 방법 -->
+          <rect x="580" y="163" width="90" height="167" rx="4" fill="#b9bfca"/><rect x="682" y="271" width="90" height="59" rx="4" fill="#c2410c"/>
+          <text x="625" y="150" text-anchor="middle" font-weight="700" fill="#2b3a55">7.7건</text><text x="727" y="258" text-anchor="middle" font-weight="800" fill="#c2410c">2.7건</text>
+          <g font-size="22" font-weight="800" fill="#13213b" text-anchor="middle">
+            <text x="176" y="368">기간 경과</text><text x="426" y="368">금지 장소 설치</text><text x="676" y="368">설치 방법 위반</text>
+          </g>
+          <g font-size="20" font-weight="800" fill="#c2410c" text-anchor="middle">
+            <text x="176" y="400">약 70% 감소</text><text x="426" y="400">0건</text><text x="676" y="400">약 65% 감소</text>
+          </g>
+        </g>
+      </svg>
+      <p style="font-size:18px;margin:8px 0 0"><span style="display:inline-block;width:14px;height:14px;background:#b9bfca;border-radius:3px;vertical-align:-1px"></span> 도입 전 1~3월 월평균 &nbsp; <span style="display:inline-block;width:14px;height:14px;background:#c2410c;border-radius:3px;vertical-align:-1px"></span> 도입 후 4~6월 월평균</p>
+      <p style="font-size:18px;margin:6px 0 0">※ '기타' 유형 민원은 6.7건 → 12.7건으로 증가하여 함께 표기합니다.</p>
     </div>
-    <div class="bar">
-      <span id="counter" aria-live="polite">1 / 13</span>
-      <div class="progress" aria-hidden="true"><span id="progress"></span></div>
-      <span class="hint">← → 키 또는 스와이프로 이동</span>
+    <div>
+      <figure class="shot" style="margin-bottom:16px"><img src="assets/screens/press-hankook.webp" alt="한국일보 기사 제목: 정당 현수막 늪에 빠진 지자체…공무원 개발 '강남스타일' 시스템 통했다, 2025.06.19" width="1090" height="318"></figure>
+      <figure class="shot" style="margin-bottom:18px"><img src="assets/screens/press-chosun.webp" alt="조선비즈 기사 제목: [정책 인사이트] '불법 현수막 관리 시스템' 개발한 강남구 공무원 &quot;3개월 독학, 비용은 6만원&quot;, 2025.05.10" width="1020" height="240"></figure>
+      <div class="note-box"><b>도입 문의 7개 기관</b> — 성북구 · 파주시 · 경남도청 · 세종시 · 동작구 · 김포시 · 대전 동구청<br>뉴시스: 강남구 AI 공모전 최우수상 「정당 현수막 관리 시스템」</div>
     </div>
-    <ol class="thumbs" id="thumbs"></ol>
-  </section>
+  </div>
+  </div>
+  <div class="src"><span>출처: 민원 감소 근거표(NotebookLM 소스 §4) · 한국일보 2025.06.19 · 조선비즈 2025.05.10 · 뉴시스 2025.06.10</span><span class="pg">06</span></div>
+  <aside class="notes"><p>도입 전 1~3월과 도입 후 4~6월의 월평균을 비교했습니다. 기간 경과 민원은 11.3건에서 3.3건으로 약 70%, 설치 방법 위반은 약 65% 줄었고, 금지 장소 설치 민원은 0건이 됐습니다.</p><p>다만 '기타' 유형은 늘었기 때문에 숨기지 않고 함께 표기했습니다. 이 사례가 보도된 뒤 성북구, 파주시 등 7개 기관에서 도입 문의가 있었습니다.</p></aside>
+</section>
 
-  <section id="grid" class="grid" hidden aria-label="전체 슬라이드 목록"></section>
+<!-- 07 옥외광고 복잡성 -->
+<section class="slide" id="s7" data-title="옥외광고: 판단 구조의 복잡성">
+  <div class="eyebrow">02 · 옥외광고 행정업무 디지털 전환</div>
+  <h2>간판 한 건에도 확인할 기준이 7가지,<br>근거 법령은 4개 층위입니다</h2>
+  <div class="body">
+  <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:start">
+    <div>
+      <h3>매 건 담당자가 수동으로 확인하던 기준</h3>
+      <div style="margin:18px 0 30px"><span class="pill">광고물 종류</span><span class="pill">면적</span><span class="pill">설치 층수</span><span class="pill">조명 방식</span><span class="pill">용도지역</span><span class="pill">특정구역 고시</span><span class="pill">심의대상 여부</span></div>
+      <div class="flow" style="flex-direction:column;gap:10px">
+        <div class="step" style="flex-direction:row;align-items:center;gap:18px"><b>1</b><span>옥외광고물법</span></div>
+        <div class="step" style="flex-direction:row;align-items:center;gap:18px"><b>2</b><span>시행령</span></div>
+        <div class="step" style="flex-direction:row;align-items:center;gap:18px"><b>3</b><span>서울특별시 옥외광고물 조례</span></div>
+        <div class="step" style="flex-direction:row;align-items:center;gap:18px"><b>4</b><span>강남구 조례 · 심의기준</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="stat" style="margin-bottom:34px"><strong>10~15분</strong><span>민원 1건 검토에 걸리던 평균 시간</span><small>법령집·조례·심의기준을 매번 대조</small></div>
+      <div class="warn-box" style="margin-bottom:18px">담당자 경험에 따라 <b>안내 내용과 판정 속도에 차이</b>가 생길 수 있었습니다.</div>
+      <div class="warn-box">허가·신고 대장은 엑셀 파일로 분산되어 버전 혼재·검색 지연·변경이력 추적이 어려웠고, 대형 디지털 광고물 200m 이격거리는 수작업으로 검토했습니다.</div>
+    </div>
+  </div>
+  </div>
+  <div class="src"><span>출처: 달인 신청서(NotebookLM 소스 §5·§6) · signcheck/AI_CASE_STUDY.md</span><span class="pg">07</span></div>
+  <aside class="notes"><p>옥외광고물 허가·신고는 광고물 종류, 면적, 층수, 조명, 용도지역, 특정구역, 심의대상 여부까지 확인할 기준이 많습니다. 근거도 법, 시행령, 서울시 조례, 강남구 기준까지 네 층으로 쌓여 있습니다.</p><p>그래서 민원 한 건 검토에 평균 10~15분이 걸렸고, 담당자마다 안내가 달라질 여지가 있었습니다.</p></aside>
+</section>
 
-  <section class="notes" aria-labelledby="notesTitle">
-    <h2 id="notesTitle"><span id="noteNum">01</span> <span id="noteTitle"></span></h2>
-    <div id="noteBody"></div>
-  </section>
-</main>
+<!-- 08 AdJudge -->
+<section class="slide" id="s8" data-title="AdJudge: 입력→판정→근거 확인">
+  <div class="eyebrow">02-1 · AdJudge 광고판정 시스템</div>
+  <h2 style="margin-bottom:28px">동일 입력, 동일 결과 — 판정과 함께 <span class="accent">근거 조문</span>을 제시합니다</h2>
+  <div class="body">
+  <div class="flow" style="margin-bottom:28px">
+    <div class="step"><b>입력</b><span>광고물 조건</span><small>종류·용도지역·층수·면적·조명·광고 종류</small></div><div class="arrow">→</div>
+    <div class="step"><b>엔진</b><span>4단계 규칙 엔진</span><small>법령·조례·강남구 심의기준을 규칙으로 구조화</small></div><div class="arrow">→</div>
+    <div class="step"><b>결과 · 1초 이내</b><span>허가·신고·불가</span><small>수수료 · 구비서류 · 근거 조문</small></div><div class="arrow">→</div>
+    <div class="step key"><b>담당자</b><span>근거 조문 확인</span><small>결과를 그대로 맹신하지 않고 실제 사안과 대조</small></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr auto 470px;gap:36px;align-items:start">
+    <figure class="shot"><img src="assets/screens/adjudge-input.webp" alt="AdJudge 광고물 정보 입력 화면: 광고물 유형 돌출간판, 용도지역 일반상업지역, 설치 층수 1, 조명 없음, 자사광고, 보도 접면" width="868" height="780" style="height:520px;object-fit:cover;object-position:top left"><figcaption>① 조건 입력</figcaption></figure>
+    <figure class="shot"><img src="assets/screens/adjudge-result.webp" alt="같은 입력의 AdJudge 판정 결과: 허가, 소심의, 표시기간, 규격 경고, 수수료, 필수 서류, 근거 조문 서울특별시 옥외광고물 조례 제6조 및 강남구 심의기준" width="1000" height="961" style="height:520px;width:auto"><figcaption>② 같은 입력의 판정 결과</figcaption></figure>
+    <div class="card" style="padding:28px 30px;display:flex;flex-direction:column;gap:18px">
+      <div><span class="tag">입력</span><p style="margin:10px 0 0;color:var(--ink);font-size:21px;font-weight:700">돌출간판 · 일반상업지역 · 1층 · 보도 접면</p></div>
+      <div><span class="tag o">판정</span><p style="margin:10px 0 0;color:var(--accent);font-size:34px;font-weight:900">허가 <span style="font-size:22px;color:var(--ink2)">· 소심의 대상</span></p></div>
+      <div><span class="tag">수수료 · 서류</span><p style="margin:10px 0 0;color:var(--ink);font-size:21px">기준 수수료 자동 계산, 필수 서류 목록 제시</p></div>
+      <div><span class="tag">근거 조문</span><p style="margin:10px 0 0;color:var(--ink);font-size:21px;font-weight:700">서울특별시 옥외광고물 조례 제6조 · 강남구 심의기준</p></div>
+    </div>
+  </div>
+  <p style="position:absolute;right:110px;top:92px;margin:0"><a class="live" href="https://signcheck.vercel.app/" target="_blank" rel="noopener">라이브로 보기 · AdJudge ↗</a></p>
+  </div>
+  <div class="src"><span>출처: signcheck.vercel.app 화면(입력: 증빙자료 캡처, 결과: 같은 입력값으로 라이브 사이트 재현) · NotebookLM 소스 §6</span><span class="pg">08</span></div>
+  <aside class="notes"><p>AdJudge는 법령, 서울시 조례, 강남구 심의기준을 4단계 규칙으로 구조화했습니다. 조건을 입력하면 1초 이내에 허가·신고·불가 여부와 수수료, 구비서류, 근거 조문을 함께 보여줍니다.</p><p>중요한 점은 결론만 주는 것이 아니라 근거 조문을 함께 준다는 것입니다. 담당자는 결과를 맹신하지 않고 근거를 확인한 뒤 안내합니다.</p></aside>
+</section>
 
-<footer class="foot">
-  <p>제16회 지방행정의 달인 · 일반행정 분야 · 강남구 도시계획과 강진규</p>
-</footer>
+<!-- 09 허가·신고 DB -->
+<section class="slide" id="s9" data-title="허가·신고 통합관리 DB">
+  <div class="eyebrow">02-2 · 허가·신고 통합관리 DB</div>
+  <h2 style="margin-bottom:28px">흩어진 민원정보를 하나의 처리 흐름으로 연결했습니다</h2>
+  <div class="body">
+  <div class="flow" style="margin-bottom:26px">
+    <div class="step"><b>1</b><span>민원 접수</span></div><div class="arrow">→</div>
+    <div class="step"><b>2</b><span>담당자 검토</span></div><div class="arrow">→</div>
+    <div class="step"><b>3</b><span>소규모 심의</span></div><div class="arrow">→</div>
+    <div class="step"><b>4</b><span>안전점검</span></div><div class="arrow">→</div>
+    <div class="step"><b>5</b><span>허가 · 반려</span></div>
+  </div>
+  <figure class="shot" style="margin-bottom:26px"><img src="assets/screens/permit-dashboard.webp" alt="광고물 허가·신고 관리 대시보드: 전체 관리건 112, 심의 일정 포함 46, 안전점검 대상 71, 수기 등록 건 87" width="1600" height="244"><figcaption>대시보드 화면 (적극행정 신청서 작성 시점)</figcaption></figure>
+  <div style="display:grid;grid-template-columns:1.25fr 1fr;gap:44px;align-items:start">
+    <table class="t">
+      <thead><tr><th>집계 기준</th><th class="num">전체·관리 중</th><th class="num">심의 일정 포함</th><th class="num">안전점검 대상</th><th class="num">수기 등록</th></tr></thead>
+      <tbody>
+        <tr><td><b>보도자료 기준</b></td><td class="num">148건</td><td class="num">70건</td><td class="num">95건</td><td class="num">자료 없음</td></tr>
+        <tr><td><b>적극행정 신청서 기준</b></td><td class="num">112건</td><td class="num">46건</td><td class="num">71건</td><td class="num">87건</td></tr>
+      </tbody>
+    </table>
+    <div><span class="pill">처리 상태 관리</span><span class="pill">이력 타임라인</span><span class="pill">실시간 통계</span><span class="pill">상태 변경 이력 자동기록</span><span class="pill">수수료 계산기</span><span class="pill">소심의 의결서 생성</span></div>
+  </div>
+  </div>
+  <div class="src"><span>출처: NotebookLM 소스 §7 (집계 시점이 다른 두 기준을 구분 표기) · ad-permit-manager 화면(증빙자료)</span><span class="pg">09</span></div>
+  <aside class="notes"><p>접수부터 검토, 소규모 심의, 안전점검, 허가·반려까지 여러 대장에 흩어져 있던 정보를 처리 상태 하나로 묶었습니다.</p><p>관리 건수는 집계 시점이 달라 두 기준을 나눠 표기했습니다. 신청서 작성 당시 112건, 이후 보도자료 기준으로는 148건입니다. 수수료 계산과 소심의 의결서 생성도 이 시스템 안에서 처리합니다.</p></aside>
+</section>
 
-<script src="app.js"></script>
+<!-- 10 200m -->
+<section class="slide" id="s10" data-title="200m 거리제한 자동분석">
+  <div class="eyebrow">02-3 · 대형 디지털 광고물 200m 거리제한 자동분석</div>
+  <h2 style="margin-bottom:30px">사람이 지도와 자료를 대조하던 공간 판단을<br>위치 데이터 기반 분석으로 전환했습니다</h2>
+  <div class="body">
+  <div style="display:grid;grid-template-columns:1fr 1.25fr;gap:52px;align-items:start">
+    <div>
+      <div class="panel" style="margin-bottom:20px"><h3>기존</h3><ul><li>신규 위치 주변 기존 광고물을 개별 검색</li><li>거리·위치를 지도와 자료로 수동 검토</li><li>오류 가능성과 심의자료 작성 지연</li></ul></div>
+      <div class="panel after"><h3>개선</h3><ul><li>강남구 대형 디지털 광고물 <b>48개소</b> 위치 DB</li><li>지도에서 설치 예정 위치 선택</li><li>반경 <b>200m</b> 내 기존 광고물 분석</li><li>심의·자문용 검토보고서 생성</li></ul></div>
+    </div>
+    <figure class="shot"><img src="assets/screens/distance-200m.webp" alt="대형광고물 200m 반경 판정 화면의 반경 지도: 강남구청 중심 반경 원과 대형 광고물 위치 마커" width="790" height="326"><figcaption>200m 반경 판정 화면 — 기준 위치 중심 반경 원과 기존 대형 광고물 위치 (증빙자료)</figcaption></figure>
+  </div>
+  </div>
+  <div class="src"><span>출처: NotebookLM 소스 §8 · 증빙자료 화면</span><span class="pg">10</span></div>
+  <aside class="notes"><p>대형 디지털 광고물은 기존 광고물과 200m 거리제한을 확인해야 합니다. 예전에는 지도와 자료를 번갈아 보며 직접 찾았습니다.</p><p>강남구 내 48개소의 위치를 DB로 만들어, 설치 예정 위치를 고르면 반경 200m 안의 기존 광고물을 바로 확인하고 검토보고서를 만듭니다.</p></aside>
+</section>
+
+<!-- 11 옥외광고 성과 -->
+<section class="slide" id="s11" data-title="옥외광고 3종: 성과">
+  <div class="eyebrow">02 · 옥외광고 3종 · 성과</div>
+  <h2>경험에 의존하던 법령 판단을<br><span class="accent">표준화된 행정</span>으로 전환했습니다</h2>
+  <div class="body">
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:36px;margin-bottom:46px">
+    <div class="stat"><strong style="font-size:62px">10~15분<br>→ 1분 이내</strong><span>민원 검토시간</span><small>법령·조례 대조 → 판정 결과와 근거 확인</small></div>
+    <div class="stat"><strong>1초 이내</strong><span>허가·신고·불가 판정 산출</span><small>수수료·구비서류·근거 조문 동시 제시</small></div>
+    <div class="stat"><strong>13종</strong><span>판정 대상 광고물</span><small>돌출간판·벽면이용간판·옥상간판 등</small></div>
+    <div class="stat"><strong>0원</strong><span>개발예산</span><small>AI 코딩 도구로 약 35일 만에 3종 자체 구축<br>(2026. 2. 24. ~ 3. 29.)</small></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;margin-bottom:34px">
+    <div class="ba" style="grid-template-columns:1fr 60px 1fr">
+      <div class="panel" style="padding:24px 26px"><h3 style="font-size:24px;margin-bottom:10px">기존</h3><p style="margin:0;font-size:20px">담당자가 법령집·조례·심의기준을 매번 대조, 담당자별 안내 편차 가능</p></div>
+      <div class="center-arrow" style="font-size:36px">→</div>
+      <div class="panel after" style="padding:24px 26px"><h3 style="font-size:24px;margin-bottom:10px">개선</h3><p style="margin:0;font-size:20px">같은 조건이면 같은 결과, 근거 조문을 함께 확인</p></div>
+    </div>
+    <figure class="shot"><img src="assets/screens/press-newsis.webp" alt="뉴시스 2026.06.17 기사: 강남구 공무원, AI로 옥외 광고 행정시스템 3종 개발 — 민원 검토 시간, 기존 10~15분에서 1분 이내로" width="930" height="215"></figure>
+  </div>
+  <div class="note-box"><b>개발 검증 과정</b> — 설계 문서 대비 구현 일치율을 반복 점검하여 84% → 98%로 끌어올렸습니다(3회 개선, 점검 65개 항목 중 64개 일치). 판정 결과는 담당자가 근거 조문과 함께 확인합니다.</div>
+  </div>
+  <div class="src"><span>출처: NotebookLM 소스 §5·§6 · 뉴시스 2026.06.17 · signcheck/docs/03-analysis/db.analysis.md</span><span class="pg">11</span></div>
+  <aside class="notes"><p>민원 검토시간은 10~15분에서 1분 이내로 줄었고, 판정 자체는 1초 이내에 나옵니다. 광고물 13종을 다루고, 세 시스템 모두 별도 예산 없이 약 35일 동안 만들었습니다.</p><p>개발 과정에서는 설계 문서와 실제 구현을 항목별로 대조해 일치율을 84%에서 98%까지 높였습니다. 무엇보다 같은 조건이면 누가 입력해도 같은 결과가 나온다는 점이 핵심입니다.</p><p>(질문 대비) 84→98%는 실제 민원 판정의 정답률이 아니라, 설계한 기능이 빠짐없이 구현됐는지를 점검한 지표입니다.</p></aside>
+</section>
+
+<!-- 12 판돌이 파이프라인 -->
+<section class="slide" id="s12" data-title="판돌이 LLM wiki: 지식관리 파이프라인">
+  <div class="eyebrow">03 · 간판도우미 · 판돌이 LLM wiki</div>
+  <h2 style="margin-bottom:22px">진짜 어려움은 법령 검색이 아니라 <span class="accent">경험의 휘발</span>입니다</h2>
+  <p class="lead" style="font-size:28px;margin-bottom:34px">2~3년 주기의 순환보직으로 담당자가 쌓은 법령 해석 경험과 민원 대응 암묵지가 조직에 남지 않습니다.<br>그래서 챗봇이 아니라, <b>사람이 검증한 지식만 남기는 파이프라인</b>을 만들었습니다.</p>
+  <div class="body">
+  <div class="flow" style="margin-bottom:34px">
+    <div class="step"><b>1</b><span>업무 질문 발생</span><small>실제 민원·검토 질의</small></div><div class="arrow">→</div>
+    <div class="step"><b>2</b><span>AI 초안</span><small>간판도우미가 초안 작성</small></div><div class="arrow">→</div>
+    <div class="step"><b>3</b><span>원문 검증</span><small>법규집·설치가이드 원문 대조</small></div><div class="arrow">→</div>
+    <div class="step"><b>4</b><span>검토대기</span><small>PENDING 상태로 보류</small></div><div class="arrow">→</div>
+    <div class="step key"><b>5 · 사람 승인</b><span>담당자 확인</span><small>원문과 실무 판단을 사람이 확인</small></div><div class="arrow">→</div>
+    <div class="step"><b>6</b><span>wiki 승격</span><small>승인된 내용만 업무매뉴얼로</small></div>
+  </div>
+  <div style="display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center">
+    <div class="stat"><strong>265건</strong><span>실제 업무 질의·응답, 11개 유형 분류</span></div>
+    <div><p style="margin:0 0 10px;font-size:21px">간판 규격 89건 · 수수료 51건 · 전광류·조명 44건 · 정보공개 42건 등 (한 질의가 여러 유형에 속할 수 있음)</p><div class="warn-box">AI는 초안만 작성합니다. 최종 법률 판단을 대신하지 않으며, 검증되지 않은 답변은 공식 매뉴얼로 쓰지 않습니다.</div></div>
+  </div>
+  </div>
+  <div class="src"><span>출처: NotebookLM 소스 §9 · 증빙자료(LLM wiki 구축 증빙)</span><span class="pg">12</span></div>
+  <aside class="notes"><p>옥외광고 업무의 진짜 어려움은 법령 검색보다 경험이 사라지는 데 있었습니다. 담당자가 2~3년마다 바뀌기 때문입니다.</p><p>그래서 AI가 초안을 쓰면, 법규집과 설치가이드 원문으로 검증하고, 검토대기 상태로 두었다가, 사람이 승인한 내용만 업무매뉴얼로 올리는 구조를 만들었습니다. 실제 업무 질의·응답 265건을 11개 유형으로 분류해 이 흐름에 올렸습니다.</p></aside>
+</section>
+
+<!-- 13 판돌이 사례 기록 -->
+<section class="slide" id="s13" data-title="판돌이: 사례 기록 예시">
+  <div class="eyebrow">03 · 판돌이 LLM wiki · 실제 기록 형식</div>
+  <h2 style="margin-bottom:34px">놓쳤던 사례가 다음 담당자의 <span class="accent">체크리스트</span>가 됩니다</h2>
+  <div class="body">
+  <div class="grid2" style="grid-template-columns:repeat(4,1fr);gap:22px;margin-bottom:34px">
+    <div class="card" ><span class="tag o">사례</span><p style="margin-top:16px;color:var(--ink);font-size:25px;line-height:1.6">심의도서에 직접조명 시방서가 포함되어 있었으나 확인하지 못하고 검토의견을 '적정'으로 처리</p></div>
+    <div class="card" ><span class="tag">판단</span><p style="margin-top:16px;color:var(--ink);font-size:25px;line-height:1.6">시방서와 조명 조건까지 함께 확인했어야 함. 검토의견은 자료 전체를 기준으로 판단</p></div>
+    <div class="card" ><span class="tag">예외</span><p style="margin-top:16px;color:var(--ink);font-size:25px;line-height:1.6">도면만이 아니라 시방서·조명 방식·부속 조건까지 봐야 하는 유형. 직접조명 여부는 놓치기 쉬움</p></div>
+    <div class="card"  style="border-color:var(--teal)"><span class="tag">재발방지 규칙</span><p style="margin-top:16px;color:var(--ink);font-size:25px;line-height:1.6">도면과 시방서를 함께 확인 · 조명 방식은 별도 체크 항목 · '적정' 전 직접/간접조명 확인</p></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:44px">
+    <div class="note-box" style="font-size:22px"><b>기록 원칙</b> — 사례 · 판단 · 예외 · 재발방지 규칙 4칸, 근거 유형 태그(법령상 기준 · 유권해석 · 실제 사례 · 담당자 경험)</div>
+    <div class="note-box" style="font-size:22px"><b>활용</b> — 유사 질문 답변, 후임자 교육, 업무 인수인계. 향후 기관 내부 로컬·온프레미스 LLM에서 활용할 수 있는 검증된 데이터 기반</div>
+  </div>
+  </div>
+  <div class="src"><span>출처: 판돌이 wiki CASE-LOG(사례 1) · NotebookLM 소스 §9</span><span class="pg">13</span></div>
+  <aside class="notes"><p>실제 기록 예시입니다. 직접조명 시방서를 놓친 사례를 사례·판단·예외·재발방지 규칙 네 칸으로 남겼습니다.</p><p>한 사람의 실수가 다음 담당자의 체크리스트가 되는 구조입니다. 이렇게 사람이 검증한 데이터가 쌓이면, 향후 기관 내부 LLM에서도 안전하게 쓸 수 있습니다.</p></aside>
+</section>
+
+<!-- 14 수합판 -->
+<section class="slide" id="s14" data-title="격주 업무보고 수합판">
+  <div class="eyebrow">04 · 격주 업무보고 수합판</div>
+  <h2 style="margin-bottom:30px">작성자는 덜 쓰고, 수합자는 덜 고치고,<br>보고자는 더 빨리 확인합니다</h2>
+  <div class="body">
+  <div class="ba" style="margin-bottom:30px">
+    <div class="panel"><h3>기존 흐름</h3><p style="font-size:23px;color:var(--ink);font-weight:700;margin:0 0 12px">팀별 한글파일 작성 → 파일 제출 → 수합 담당자 붙여넣기 → 순서·양식 수정 → 최종 파일 공유</p><p style="margin:0;font-size:20px">제출 여부 실시간 확인 곤란 · 반복 사업 매번 재작성 · 과거 보고 재활용 어려움</p></div>
+    <div class="center-arrow">→</div>
+    <div class="panel after"><h3>개선 흐름</h3><p style="font-size:23px;color:#fff;font-weight:700;margin:0 0 12px">웹에서 항목 입력 → 자동저장·자동수합 → 제출 현황 실시간 확인 → 읽기 전용 공유 → PDF 출력</p><p style="margin:0;font-size:20px">지난 회차 복사 · 제출 후 수정 · 상태 관리(작성 전 · 작성 중 · 제출 완료 · 수정 필요 · 완료)</p></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:44px;align-items:start">
+    <div>
+      <h3>주요 기능</h3>
+      <div><span class="pill">팀 목록 관리</span><span class="pill">보고 회차 생성</span><span class="pill">팀별 작성 링크 발급</span><span class="pill">자동 저장</span><span class="pill">지난 회차 복사</span><span class="pill">제출 현황 확인</span><span class="pill">보고서 미리보기</span><span class="pill">PDF 출력</span><span class="pill">읽기 전용 공유</span></div>
+    </div>
+    <div>
+      <h3>지속 가능한 운영 설계</h3>
+      <div><span class="pill">행정망·폐쇄망 내부 운영</span><span class="pill">PostgreSQL 자체 운영</span><span class="pill">Docker Compose 배포</span><span class="pill">허용 IP 대역 접근 제한</span><span class="pill">작성자·보고자 링크 토큰 분리</span><span class="pill">백업·복구 절차</span></div>
+    </div>
+  </div>
+  <p style="position:absolute;right:110px;top:92px;margin:0;display:flex;gap:10px"><a class="live" href="https://biweekly-report-board.vercel.app" target="_blank" rel="noopener">라이브로 보기 ↗</a><a class="live" href="https://github.com/kangjinkui/biweekly-report-board" target="_blank" rel="noopener">GitHub ↗</a></p>
+  </div>
+  <div class="src"><span>출처: NotebookLM 소스 §10 · github.com/kangjinkui/biweekly-report-board (수치화된 절감률 없음)</span><span class="pg">14</span></div>
+  <aside class="notes"><p>조직 내부의 반복 업무도 같은 방식으로 이었습니다. 팀별 한글파일을 받아 붙여넣고 양식을 고치던 흐름을, 웹에서 입력하면 자동으로 모이고 제출 현황을 실시간으로 보는 흐름으로 바꿨습니다.</p><p>행정망 내부 운영을 전제로 설계해서, 주간보고나 간부회의 자료 같은 다른 정기 취합 업무에도 그대로 적용할 수 있습니다.</p></aside>
+</section>
+
+<!-- 15 개발 방식 -->
+<section class="slide" id="s15" data-title="비예산 자체 개발과 학습 과정">
+  <div class="eyebrow">개발 방식</div>
+  <h2>비전공자가 현장의 불편을 풀기 위해<br>필요한 기술을 하나씩 배웠습니다</h2>
+  <div class="body">
+  <div class="grid3" style="margin-bottom:36px">
+    <div class="card"><h3><span class="accent">이타심</span> — 공감은 제1의 프로그래밍 언어</h3><p>개발은 누군가의 불편을 해소하는 일. 현장의 맥락을 모르면 기능이 좋아도 외면받습니다.</p></div>
+    <div class="card"><h3><span class="accent">도메인</span> — 16년 행정경험</h3><p>현수막이 실제로 어떻게 설치·정비되고, 법규와 민원이 어떻게 처리되는지 아는 것이 출발점이었습니다.</p></div>
+    <div class="card"><h3><span class="accent">자율학습</span> — 질문·시도·개선</h3><p>AI에게 모르는 부분을 묻고, 구현하고, 오류를 고치며 역량을 쌓았습니다.</p></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:start">
+    <div>
+      <h3>문제를 풀며 익힌 기술</h3>
+      <div><span class="pill">Bubble</span><span class="pill">지도 API</span><span class="pill">데이터베이스</span><span class="pill">통계·필터</span><span class="pill">엑셀 내보내기</span><span class="pill">Next.js</span><span class="pill">PostgreSQL</span><span class="pill">Docker Compose</span><span class="pill">Claude Code 등 AI 코딩 도구</span></div>
+    </div>
+    <table class="t">
+      <tbody>
+        <tr><td><b>정당현수막</b></td><td>3개월 독학, 비용 6만원 <span style="color:var(--muted);font-size:17px">(조선비즈)</span></td></tr>
+        <tr><td><b>옥외광고 3종</b></td><td>개발예산 0원, 약 35일</td></tr>
+        <tr><td><b>공통</b></td><td>외부 용역 없이 자체 구축</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <div class="src"><span>출처: NotebookLM 소스 §11 · 조선비즈 2025.05.10 · 소스 §5</span><span class="pg">15</span></div>
+  <aside class="notes"><p>저는 개발 전공자가 아닙니다. 현장의 불편을 먼저 발견했고, 그것을 풀기 위해 필요한 기술을 AI에게 묻고 시도하며 하나씩 배웠습니다.</p><p>정당현수막 시스템은 3개월 독학과 6만원으로, 옥외광고 3종은 별도 예산 없이 약 35일 만에 만들었습니다.</p></aside>
+</section>
+
+<!-- 16 확산 -->
+<section class="slide" id="s16" data-title="확산 가능성과 AX 행정">
+  <div class="eyebrow">확산 가능성</div>
+  <h2>강남구의 사례를 다른 지방자치단체도<br>바로 검토할 수 있도록</h2>
+  <div class="body">
+  <div class="grid3">
+    <div class="card"><h3>이미 확인된 관심</h3><p>정당현수막 관리시스템 도입 문의 7개 기관</p><p style="margin-top:12px;color:var(--ink);font-weight:700">성북구 · 파주시 · 경남도청 · 세종시 · 동작구 · 김포시 · 대전 동구청</p></div>
+    <div class="card"><h3>공개된 코드</h3><p>GitHub 공개 저장소로 구조를 확인할 수 있습니다.</p><p style="margin-top:12px;font-size:19px;color:var(--ink);line-height:1.7">kangjinkui/banner_gangnam<br>kangjinkui/signcheck<br>kangjinkui/Ad-permit-manager<br>kangjinkui/biweekly-report-board</p></div>
+    <div class="card"><h3>다른 업무로의 적용</h3><p>수합판 → 주간보고 · 간부회의 자료 · 부서별 실적 취합 등 정기 보고자료 수합</p><p style="margin-top:12px">판돌이 wiki → 사람이 검증한 법령·사례 데이터를 기관 내부 로컬·온프레미스 LLM에서 활용할 기반</p></div>
+  </div>
+  <div class="note-box" style="margin-top:34px;font-size:22px">전자정부가 업무를 <b>전산화</b>했다면, 다음 단계는 사람이 검증한 행정 경험과 지식이 조직 안에 <b>축적되는 AX 체계</b>입니다.</div>
+  </div>
+  <div class="src"><span>출처: NotebookLM 소스 §4·§9·§10 · GitHub 공개 저장소</span><span class="pg">16</span></div>
+  <aside class="notes"><p>확산 가능성입니다. 정당현수막 시스템은 이미 7개 기관에서 문의가 있었고, 주요 시스템의 코드는 공개 저장소로 확인할 수 있습니다.</p><p>수합판은 다른 정기 보고 업무에, 판돌이 wiki는 향후 기관 내부 LLM 환경의 기반으로 이어질 수 있습니다.</p></aside>
+</section>
+
+<!-- B1 보너스: 당직 AI 문제·데이터 -->
+<section class="slide bonus" id="s17" data-title="보너스: AI 당직 — 밤의 민원을 잇다">
+  <div class="stamp">BONUS · 개발 중</div>
+  <div class="eyebrow">보너스 · 지금 만들고 있는 것</div>
+  <h2>밤의 민원과 낮의 담당 부서를 잇는<br><span class="accent">AI 당직 통화시스템</span></h2>
+  <div class="body">
+  <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:start">
+    <div>
+      <div class="ba" style="grid-template-columns:1fr 60px 1fr;margin-bottom:30px">
+        <div class="panel" style="padding:26px 28px"><h3 style="font-size:25px;margin-bottom:10px">지금</h3><p style="margin:0;font-size:21px">야간·휴일 당직 전화를 모두 당직자가 직접 응대, 통화 내용은 사후 당직일지로만 확인</p></div>
+        <div class="center-arrow" style="font-size:36px">→</div>
+        <div class="panel after" style="padding:26px 28px"><h3 style="font-size:25px;margin-bottom:10px">목표</h3><p style="margin:0;font-size:21px">AI가 먼저 받아 긴급·당직자 연결·민원 접수·단순 안내로 나누고 알맞은 곳으로 연결</p></div>
+      </div>
+      <table class="t">
+        <thead><tr><th style="width:18%">유형</th><th>처리</th></tr></thead>
+        <tbody>
+          <tr><td><b class="accent">R1 긴급</b></td><td>119·112 안내 + 당직자 즉시 연결 (항상 최우선)</td></tr>
+          <tr><td><b>R2 연결</b></td><td>민원인이 원하면 당직자 내선으로 연결</td></tr>
+          <tr><td><b>R3 접수</b></td><td>위치·연락처 접수 → 다음 날 담당처 전달</td></tr>
+          <tr><td><b>R4 안내</b></td><td>사람이 승인한 매뉴얼 문구만 그대로 안내</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h3>이번에도 데이터부터 봤습니다</h3>
+      <p style="margin:0 0 22px">당직일지 <b style="color:var(--ink)">2,370건</b>과 실통화 <b style="color:var(--ink)">253건</b>을 분석해 가장 잦은 민원부터 집중</p>
+      <div class="bars">
+        <div class="bar-row"><span>도로·조명</span><i style="width:100%"></i><b>23.3%</b></div>
+        <div class="bar-row"><span>청소·폐기물</span><i style="width:98.3%"></i><b>22.9%</b></div>
+        <div class="bar-row"><span>소음</span><i style="width:50.6%"></i><b>11.8%</b></div>
+        <div class="bar-row"><span>교통·주차</span><i style="width:27.9%"></i><b>6.5%</b></div>
+      </div>
+      <p style="margin:22px 0 0;font-size:20px">쓰레기·소음·주정차·가로등·도로파임·동물 사체·사고 잔해물을 AI 응대 → 접수 → 담당처 문자 전달 흐름으로 구현</p>
+    </div>
+  </div>
+  </div>
+  <div class="src"><span>출처: AI 당직 통화시스템 개발 추진 결과 보고(2026. 9. 30.) · 개발 시작 2026. 8. 20.(약 5주 개발), 현재 시험 서버에서 실통화 시험 중</span><span class="pg">17</span></div>
+  <aside class="notes"><p>마지막으로 보너스입니다. 지금 개발 중인 AI 당직 통화시스템입니다.</p><p>야간·휴일 당직 전화는 지금 모두 당직자가 직접 받습니다. 이번에도 먼저 데이터를 봤습니다. 당직일지 2,370건과 실통화 253건을 분석해 도로·조명, 청소·폐기물, 소음처럼 가장 잦은 민원부터 집중했습니다.</p></aside>
+</section>
+
+<!-- B2 보너스: 구조·원칙 -->
+<section class="slide bonus" id="s18" data-title="보너스: AI 당직 — 서버가 판단, AI는 듣고 말한다">
+  <div class="stamp">BONUS · 개발 중</div>
+  <div class="eyebrow">보너스 · AI 당직 설계 원칙</div>
+  <h2>서버가 판단하고, AI는 듣고 말한다<br><span class="accent" style="font-size:44px">안내 문구는 사람이 쓰고, 대화만 AI가 합니다</span></h2>
+  <div class="body">
+  <div class="flow" style="margin-bottom:34px">
+    <div class="step"><b>전화</b><span>민원인</span><small>당직실 번호로 전화</small></div><div class="arrow">→</div>
+    <div class="step"><b>교환기</b><span>Asterisk</span><small>청사 교환기에 내선 하나로 등록</small></div><div class="arrow">→</div>
+    <div class="step"><b>오픈소스 음성 AI</b><span>AVA</span><small>듣고 말하기 · 원본 수정 없이 설정으로만 연결</small></div><div class="arrow">→</div>
+    <div class="step"><b>전달 창구</b><span>당직 MCP</span><small>도구 호출을 그대로 전달, 스스로 판단하지 않음</small></div><div class="arrow">→</div>
+    <div class="step key"><b>판단</b><span>당직앱 · 발효 매뉴얼</span><small>안내 문장·접수 단계·다음 행동을 서버가 결정</small></div>
+  </div>
+  <div class="grid3">
+    <div class="card"><h3>오분류하지 않는 것이 먼저</h3><p>자연스러운 대화보다 분류가 우선. 긴급이 조금이라도 의심되면 항상 상위로 올리고 119·112 안내를 최우선</p></div>
+    <div class="card"><h3>모르면 지어내지 않는다</h3><p>매뉴얼과 맞지 않으면 답하지 않고 접수로 넘김. 매뉴얼 문구를 원본과 대조해 뜻이 틀린 22건 수정, 검증 안 된 문구는 송출 차단</p></div>
+    <div class="card"><h3>언제든 사람이 회수</h3><p>당직앱에서 AI 응대를 실시간으로 듣고 '넘겨받기'로 즉시 인수. 민원인이 원하면 당직자에게 연결</p></div>
+  </div>
+  <p style="margin-top:26px;font-size:20px">판돌이 wiki와 같은 원칙입니다 — <b style="color:var(--ink)">사람이 검증한 내용만 AI가 말하게</b> 합니다.</p>
+  </div>
+  <div class="src"><span>출처: ai-dangjik README · 구조 결정 기록(2026-10-03) · 개발 추진 결과 보고(2026. 9. 30.)</span><span class="pg">18</span></div>
+  <aside class="notes"><p>설계 원칙은 한 문장입니다. 서버가 판단하고, AI는 듣고 말한다. 무엇을 안내할지는 사람이 검증한 매뉴얼과 당직 서버가 정하고, AI는 대화만 합니다.</p><p>그래서 긴급이 의심되면 항상 119·112 안내가 먼저이고, 매뉴얼에 없는 질문에는 답을 지어내지 않고 접수로 넘깁니다. 판돌이 wiki와 같은 생각입니다.</p></aside>
+</section>
+
+<!-- B3 보너스: 화면·진행 상황 -->
+<section class="slide bonus" id="s19" data-title="보너스: AI 당직 — 화면과 진행 상황">
+  <div class="stamp">BONUS · 개발 중</div>
+  <div class="eyebrow">보너스 · AI 당직 진행 상황</div>
+  <h2 style="margin-bottom:30px">당직자는 AI의 통화를 실시간으로 보고,<br>필요하면 넘겨받습니다</h2>
+  <div class="body">
+  <div style="display:grid;grid-template-columns:auto 1fr;gap:52px;align-items:start">
+    <figure class="shot"><img src="assets/screens/dangjik-live.webp" alt="당직앱 실시간 대화 화면 재현: AI 인사, 민원인 쓰레기 미수거 신고, AI가 용건을 되물어 확인, 지식 조회 도구 실행 성공, 위치 확인, 접수 도구 실행 성공, 다음 날 담당 부서 전달 안내" width="1200" height="996" style="height:560px;width:auto"><figcaption>당직앱 실시간 대화 화면 — 실제 화면 구성 요소에 <b>가상 통화</b>를 넣어 재현<br>(실제 통화·개인정보 아님)</figcaption></figure>
+    <div>
+      <h3 style="margin-bottom:16px">지금까지 된 것</h3>
+      <div class="flow" style="flex-direction:column;gap:10px;margin-bottom:24px">
+        <div class="step"><b>빈번 민원</b><span>AI 응대 → 접수 → 담당처 문자 전달</span><small>"강남구청역 3번 출구" 같은 장소 이름도 행정동으로 변환</small></div>
+        <div class="step"><b>실시간 모니터링</b><span>AI 응대 듣기 · 넘겨받기</span><small>진행 중 통화·접수 내역, 다음 날 부서별 전달 목록 자동 작성</small></div>
+        <div class="step"><b>당직자 연결</b><span>"당직자 바꿔 주세요" → 내선 연결</span><small>당직자가 통화 중이면 AI가 알리고 용건을 계속 들음</small></div>
+      </div>
+      <div class="warn-box"><b>현재 단계: 시험 서버 실통화 시험 중</b> — 자동 시험 827건 통과(9. 30. 기준). 남은 과제: 야간 시범 운영으로 실통화 반복 검증·응대 품질 측정, 담당처 실제 연락처 반영, 업체 전달 전 민원인 동의 절차</div>
+    </div>
+  </div>
+  </div>
+  <div class="src"><span>출처: 개발 추진 결과 보고(2026. 9. 30.) · 화면은 ai-dangjik 당직앱 컴포넌트를 가상 데이터로 렌더링</span><span class="pg">19</span></div>
+  <aside class="notes"><p>당직자는 이 화면에서 AI가 받는 통화를 실시간으로 보고, AI 응대를 직접 듣다가 언제든 넘겨받을 수 있습니다. 화면의 통화는 설명을 위한 가상 통화입니다.</p><p>아직 개발 중이고, 시험 서버에서 실통화 시험을 하고 있습니다. 야간 시범 운영으로 실제 응대 품질을 측정하는 것이 다음 단계입니다.</p></aside>
+</section>
+
+<!-- 17 결론 -->
+<section class="slide dark" id="s20" data-title="결론">
+  <div class="eyebrow">결론</div>
+  <div class="body">
+  <p class="quote" style="color:#fff;max-width:1600px;margin-bottom:56px">기술을 먼저 놓고 문제를 찾은 것이 아니라,<br>현장의 불편을 해결하기 위해 기술을 배웠습니다.</p>
+  <div class="grid3">
+    <div class="card"><h3 style="color:#fff">사후 대응 → 사전 관리</h3><p>위치 데이터로 정비 대상을 먼저 찾는 현장 행정</p></div>
+    <div class="card"><h3 style="color:#fff">개인의 기억 → 조직의 지식</h3><p>사람이 검증한 판단만 매뉴얼로 남기는 구조</p></div>
+    <div class="card"><h3 style="color:#fff">반복 작성 → 자동 수합</h3><p>작성·수합·보고가 한 흐름으로 이어지는 내부 업무</p></div>
+  </div>
+  <p style="margin-top:56px;font-size:28px;color:#e7ecf5;font-weight:700">행정을 잇는 공공개발 — 서울특별시 강남구 도시계획과 강진규</p>
+  </div>
+  <div class="src"><span>감사합니다</span><span class="pg">20</span></div>
+  <aside class="notes"><p>저는 스스로를 새로운 것을 만드는 사람이라기보다, 동료와 주민이 겪는 불편한 지점을 발견하고 해결하는 사람이라고 생각합니다.</p><p>사후 대응에서 사전 관리로, 개인의 기억에서 조직의 지식으로. 앞으로도 끊어진 행정을 잇는 일을 계속하겠습니다. 감사합니다.</p></aside>
+</section>
+
+<!-- 18 부록 -->
+<section class="slide" id="s21" data-title="부록: 출처·증빙">
+  <div class="eyebrow">부록</div>
+  <h2 style="margin-bottom:30px">출처 · 증빙 목록</h2>
+  <div class="grid2" style="gap:56px">
+    <div>
+      <h3>시스템</h3>
+      <p style="font-size:20px;line-height:1.85;margin-bottom:24px">정당현수막 관리 — https://hbc.ai.kr/<br>AdJudge 광고판정 — https://signcheck.vercel.app/<br>허가·신고 관리 DB — https://ad-permit-manager.vercel.app/<br>격주 업무보고 수합판 — https://biweekly-report-board.vercel.app<br>GitHub — https://github.com/kangjinkui</p>
+      <h3>개발 검증 기록</h3>
+      <p style="font-size:20px;line-height:1.7">AdJudge 설계 대비 구현 갭분석 — signcheck/docs/03-analysis/db.analysis.md<br>광고물 13종 정의 — signcheck/docs/01-plan/features/광고판정.plan.md</p>
+      <h3 style="margin-top:24px">보너스 · AI 당직 (개발 중)</h3>
+      <p style="font-size:20px;line-height:1.7">AI 당직 통화시스템 개발 추진 결과 보고(2026. 9. 30.) · 비공개 저장소 ai-dangjik<br>통화 계층: 오픈소스 AVA(AI Voice Agent for Asterisk)</p>
+    </div>
+    <div>
+      <h3>언론 보도</h3>
+      <p style="font-size:20px;line-height:1.7;margin-bottom:24px">한국일보(2025.06.19) 「정당 현수막 늪에 빠진 지자체…공무원 개발 '강남스타일' 시스템 통했다」<br>조선비즈(2025.05.10) 「[정책 인사이트] '불법 현수막 관리 시스템' 개발한 강남구 공무원 "3개월 독학, 비용은 6만원"」<br>뉴시스(2025.06.10) 「강남구 AI 공모전 최우수상에 '정당 현수막 관리 시스템'」<br>뉴시스(2026.06.17) 「강남구 공무원, AI로 옥외 광고 행정시스템 3종 개발」</p>
+      <h3>수치 표기 원칙</h3>
+      <p style="font-size:20px;line-height:1.7">모든 수치는 달인 신청서·증빙자료·언론 보도에서 확인된 값만 사용 · 집계 시점이 다른 수치는 기준을 구분 표기 · 근거가 없는 절감률은 표기하지 않음</p>
+    </div>
+  </div>
+  <div class="src"><span>제16회 지방행정의 달인 · 일반행정 분야</span><span class="pg">21</span></div>
+  <aside class="notes"><p>질의응답 시 참고용 출처 목록입니다.</p></aside>
+</section>
+
+</div></div>
+
+<div id="progress"></div>
+<nav id="controls" aria-label="발표 제어">
+  <button id="prev" type="button" aria-label="이전 슬라이드">‹</button>
+  <span id="counter" aria-live="polite">1 / 21</span>
+  <button id="next" type="button" aria-label="다음 슬라이드">›</button>
+  <button id="notesBtn" type="button" aria-label="발표자 노트 (N)">노트</button>
+  <button id="overviewBtn" type="button" aria-label="전체 보기 (O)">전체</button>
+  <button id="fullBtn" type="button" aria-label="전체 화면 (F)">⛶</button>
+  <a class="ctl-link" href="presentation.pdf" download="행정을_잇는_공공개발의_달인.pdf" aria-label="PDF 다운로드">PDF</a>
+</nav>
+<div id="overview" role="dialog" aria-label="전체 슬라이드"></div>
+<div id="notesPanel" aria-live="polite"></div>
+
+<script>
+const slides = [...document.querySelectorAll('.slide')];
+const deck = document.getElementById('deck');
+const overview = document.getElementById('overview');
+const controls = document.getElementById('controls');
+const notesPanel = document.getElementById('notesPanel');
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
+};
+let index = 0, timer, touchX = 0;
+
+function fit() {
+  const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+  deck.style.transform = `scale(${s})`;
+  deck.style.left = `${(innerWidth - 1920 * s) / 2}px`;
+  deck.style.top = `${(innerHeight - 1080 * s) / 2}px`;
+}
+function renderNotes() {
+  const s = slides[index];
+  const n = s.querySelector('aside.notes');
+  notesPanel.innerHTML = `<h4>${String(index + 1).padStart(2, '0')} · ${s.dataset.title}</h4>` + (n ? n.innerHTML : '');
+}
+function show(i) {
+  index = Math.min(Math.max(i, 0), slides.length - 1);
+  slides.forEach((s, n) => s.classList.toggle('active', n === index));
+  document.getElementById('counter').textContent = `${index + 1} / ${slides.length}`;
+  document.getElementById('progress').style.width = `${(index + 1) / slides.length * 100}%`;
+  renderNotes();
+  if (location.hash !== `#s${index + 1}`) history.replaceState(null, '', `#s${index + 1}`);
+}
+function reveal() {
+  controls.classList.add('visible');
+  clearTimeout(timer);
+  timer = setTimeout(() => controls.classList.remove('visible'), 1800);
+}
+function toggleOverview() {
+  overview.classList.toggle('open');
+  if (overview.classList.contains('open')) overview.querySelectorAll('.thumb')[index]?.focus();
+}
+function toggleNotes(force) {
+  const open = notesPanel.classList.toggle('open', force);
+  store.set('dalin-notes', open ? '1' : '0');
+}
+
+slides.forEach((s, i) => {
+  const b = document.createElement('button');
+  b.className = 'thumb';
+  b.type = 'button';
+  b.innerHTML = `<b>${String(i + 1).padStart(2, '0')}</b><strong>${s.dataset.title}</strong>`;
+  b.onclick = () => { show(i); toggleOverview(); };
+  overview.appendChild(b);
+});
+
+document.getElementById('prev').onclick = () => show(index - 1);
+document.getElementById('next').onclick = () => show(index + 1);
+document.getElementById('notesBtn').onclick = () => toggleNotes();
+document.getElementById('overviewBtn').onclick = toggleOverview;
+document.getElementById('fullBtn').onclick = () =>
+  document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen?.();
+
+addEventListener('resize', fit);
+addEventListener('mousemove', reveal, { passive: true });
+addEventListener('touchstart', (e) => { reveal(); touchX = e.changedTouches[0].screenX; }, { passive: true });
+addEventListener('touchend', (e) => {
+  const d = e.changedTouches[0].screenX - touchX;
+  if (Math.abs(d) > 60) show(index + (d < 0 ? 1 : -1));
+}, { passive: true });
+addEventListener('keydown', (e) => {
+  if (e.target.closest && e.target.closest('input, textarea')) return;
+  if (overview.classList.contains('open') && e.key === 'Escape') { toggleOverview(); return; }
+  if (['ArrowRight', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); show(index + 1); }
+  else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); show(index - 1); }
+  else if (e.key === 'Home') show(0);
+  else if (e.key === 'End') show(slides.length - 1);
+  else if (e.key.toLowerCase() === 'f') document.getElementById('fullBtn').click();
+  else if (e.key.toLowerCase() === 'o') toggleOverview();
+  else if (e.key.toLowerCase() === 'n') toggleNotes();
+});
+
+const hash = parseInt(location.hash.replace('#s', ''), 10);
+if (Number.isInteger(hash)) index = hash - 1;
+fit();
+show(index);
+if (store.get('dalin-notes') === '1') toggleNotes(true);
+reveal();
+</script>
 </body>
 </html>
