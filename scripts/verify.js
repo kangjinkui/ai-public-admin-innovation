@@ -72,6 +72,21 @@ for (const m of html.matchAll(/https?:\/\/([^/"'\s<>)]+)/g)) {
   if (!allowHosts.includes(m[1])) fail(`허용되지 않은 외부 호스트: ${m[1]}`);
 }
 
+// 8) 장당 화면 글자 수 (노트·출처·SVG 제외). v3 개편을 마친 장에만 상한 적용
+const TEXT_LIMIT = 120;
+const LIMITED = new Set(['s2', 's3', 's4', 's5', 's6']);
+const EXEMPT = new Set(['s21']); // 부록: 질의응답용 참고 화면
+const counts = sections.map((s) => {
+  const id = s.match(/id="([^"]+)"/)[1];
+  const n = s.replace(/<aside class="notes">[\s\S]*?<\/aside>/, '')
+    .replace(/<div class="src">[\s\S]*?<\/div>/, '')
+    .replace(/<svg[\s\S]*?<\/svg>/g, '')
+    .replace(/<[^>]+>/g, ' ').replace(/&[a-z]+;/g, ' ').replace(/\s+/g, '').length;
+  if (LIMITED.has(id) && !EXEMPT.has(id) && n > TEXT_LIMIT) fail(`${id}: 화면 글자 ${n}자 (상한 ${TEXT_LIMIT}자)`);
+  return `${id}:${n}`;
+});
+console.log(`화면 글자 수 — ${counts.join(' ')}`);
+
 if (errors.length) {
   console.error(`FAIL (${errors.length})\n- ` + errors.join('\n- '));
   process.exit(1);
