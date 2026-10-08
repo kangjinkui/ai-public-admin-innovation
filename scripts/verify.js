@@ -10,7 +10,7 @@ const errors = [];
 const fail = (msg) => errors.push(msg);
 
 // 1) 장수·id
-const EXPECTED_SLIDES = 21;
+const EXPECTED_SLIDES = 20;
 const ids = [...html.matchAll(/<section class="slide[^"]*" id="([^"]+)"/g)].map((m) => m[1]);
 if (ids.length !== EXPECTED_SLIDES) fail(`슬라이드 ${EXPECTED_SLIDES}장 기대, 실제 ${ids.length}장`);
 if (new Set(ids).size !== ids.length) fail('슬라이드 id 중복');
@@ -75,7 +75,7 @@ for (const m of html.matchAll(/https?:\/\/([^/"'\s<>)]+)/g)) {
 // 8) 장당 화면 글자 수 (노트·출처·SVG 제외). v3 개편을 마친 장에만 상한 적용
 const TEXT_LIMIT = 120;
 const LIMITED = new Set(['s1','s2','s3','s4','s5','s6','s7','s8','s9','s10','s11','s12','s13','s14','s15','s16','s17','s18','s19','s20']);
-const EXEMPT = new Set(['s21']); // 부록: 질의응답용 참고 화면
+const EXEMPT = new Set();
 const counts = sections.map((s) => {
   const id = s.match(/id="([^"]+)"/)[1];
   const n = s.replace(/<aside class="notes">[\s\S]*?<\/aside>/, '')
