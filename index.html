@@ -93,6 +93,13 @@ aside.notes{display:none}
 .bar-row span{font-weight:700;color:var(--ink2)}
 .bar-row i{display:block;height:30px;border-radius:0 6px 6px 0;background:var(--accent)}
 .bar-row b{font-family:"Noto Serif KR",serif;font-size:26px;color:var(--accent);text-align:right}
+/* 생성 이미지 무대 */
+.gen-stage{position:relative;margin:auto auto 0}
+.gen-stage img{display:block;width:100%;height:100%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent),linear-gradient(180deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent),linear-gradient(180deg,transparent,#000 8%,#000 92%,transparent);mask-composite:intersect}
+.gl{position:absolute;transform:translateX(-50%);white-space:nowrap;padding:8px 20px;border-radius:999px;background:rgba(13,22,40,.72);border:1px solid rgba(255,255,255,.16);font-size:30px;font-weight:800;color:#fff;letter-spacing:-.02em}
+.gl b{color:#7fd3c6}.gl i{font-style:normal;margin:0 12px;color:#f08a5d}
+.accent-l{color:#f08a5d}
+.gen .src{color:rgba(255,255,255,.45)}
 /* 컨트롤 */
 #controls{position:fixed;z-index:60;left:50%;bottom:14px;transform:translateX(-50%);display:flex;align-items:center;gap:4px;padding:6px 10px;border-radius:999px;background:rgba(13,22,40,.92);color:#fff;opacity:0;transition:opacity .2s}
 #controls.visible,#controls:hover,#controls:focus-within,body.panel-open #controls{opacity:1}
@@ -149,21 +156,20 @@ aside.notes{display:none}
 </section>
 
 <!-- 02 문제의식 -->
-<section class="slide" id="s2" data-title="문제의식: 흐름의 단절">
+<section class="slide dark gen" id="s2" data-title="문제의식: 흐름의 단절" style="background:#1b2b45">
   <div class="eyebrow">문제의식</div>
-  <h2>행정의 어려움은 제도의 부족만이 아니라,<br><span class="accent">정보와 업무 흐름이 끊어진 데서</span> 생깁니다</h2>
-  <div class="body">
-  <div class="grid3" style="gap:22px">
-    <div class="card"><h3>현장 ↔ 사무실</h3><p>현수막 위치·기간을 수기·엑셀로 관리하여 민원이 들어온 뒤에야 현장을 확인</p><p style="margin-top:14px"><span class="tag">정당현수막 관리시스템</span></p></div>
-    <div class="card"><h3>민원 ↔ 담당자</h3><p>같은 문의에도 담당자 경험에 따라 안내 내용과 판정 속도가 달라질 수 있음</p><p style="margin-top:14px"><span class="tag">AdJudge 광고판정</span></p></div>
-    <div class="card"><h3>데이터 ↔ 판단</h3><p>허가대장·심의·점검 정보가 여러 문서에 흩어지고, 200m 이격거리는 지도와 자료를 수작업 대조</p><p style="margin-top:14px"><span class="tag">허가·신고 DB</span><span class="tag">200m 분석</span></p></div>
-    <div class="card"><h3>법령 원문 ↔ 담당자 경험</h3><p>법령·조례·심의기준과 실제 민원사례가 연결되지 않고 개인의 기억에 머묾</p><p style="margin-top:14px"><span class="tag">판돌이 LLM wiki</span></p></div>
-    <div class="card"><h3>작성자 ↔ 수합자</h3><p>팀별 한글파일을 받아 붙여넣고 순서·양식을 고치는 작업이 매 회차 반복</p><p style="margin-top:14px"><span class="tag">격주 업무보고 수합판</span></p></div>
-    <div class="card"><h3>전임자 ↔ 후임자</h3><p>2~3년 주기의 순환보직으로 법령 해석 경험과 민원 대응 암묵지가 사라짐</p><p style="margin-top:14px"><span class="tag">판돌이 LLM wiki</span></p></div>
+  <h2 style="margin-bottom:10px">행정의 어려움은 <span class="accent-l">흐름이 끊어진 데서</span> 생깁니다</h2>
+  <div class="gen-stage" style="width:1500px;aspect-ratio:1536/740">
+    <img src="assets/gen/s02-bridges.webp" alt="여섯 쌍의 떠 있는 섬을 잇는 다리가 모두 가운데서 끊어진 그림">
+    <div class="gl" style="left:16.9%;top:1%"><b>현장</b><i>↔</i>사무실</div>
+    <div class="gl" style="left:50.4%;top:1%"><b>민원</b><i>↔</i>담당자</div>
+    <div class="gl" style="left:82.7%;top:1%"><b>데이터</b><i>↔</i>판단</div>
+    <div class="gl" style="left:16.9%;top:58.5%"><b>법령 원문</b><i>↔</i>경험</div>
+    <div class="gl" style="left:50.4%;top:58.5%"><b>작성자</b><i>↔</i>수합자</div>
+    <div class="gl" style="left:82.7%;top:58.5%"><b>전임자</b><i>↔</i>후임자</div>
   </div>
-  </div>
-  <div class="src"><span>출처: 달인 신청서·증빙자료(NotebookLM 소스 §1)</span><span class="pg">02</span></div>
-  <aside class="notes"><p>행정의 어려움은 거창한 제도의 부족보다, 정보와 업무 흐름이 끊어진 데서 생긴다고 봤습니다.</p><p>현장과 사무실, 민원과 담당자, 데이터와 판단, 법령과 경험, 작성자와 수합자, 전임자와 후임자. 이 여섯 가지 단절을 하나씩 이어온 이야기입니다.</p></aside>
+  <div class="src"><span>출처: 달인 신청서·증빙자료(NotebookLM 소스 §1) · 그림: AI 생성 일러스트</span><span class="pg">02</span></div>
+  <aside class="notes"><p>행정의 어려움은 거창한 제도의 부족보다, 정보와 업무 흐름이 끊어진 데서 생긴다고 봤습니다. 여섯 개의 다리가 모두 가운데서 끊어져 있습니다.</p><p>현장과 사무실 — 현수막 위치·기간을 수기·엑셀로 관리해 민원이 들어온 뒤에야 현장을 확인했습니다(정당현수막 관리시스템).</p><p>민원과 담당자 — 같은 문의에도 담당자 경험에 따라 안내 내용과 판정 속도가 달라질 수 있었습니다(AdJudge 광고판정).</p><p>데이터와 판단 — 허가대장·심의·점검 정보가 여러 문서에 흩어지고, 200m 이격거리는 지도와 자료를 수작업으로 대조했습니다(허가·신고 DB, 200m 분석).</p><p>법령 원문과 담당자 경험 — 법령·조례·심의기준과 실제 민원사례가 연결되지 않고 개인의 기억에 머물렀습니다(판돌이 LLM wiki).</p><p>작성자와 수합자 — 팀별 한글파일을 받아 붙여넣고 순서·양식을 고치는 작업이 매 회차 반복됐습니다(격주 업무보고 수합판).</p><p>전임자와 후임자 — 2~3년 주기의 순환보직으로 법령 해석 경험과 민원 대응 암묵지가 사라졌습니다(판돌이 LLM wiki).</p><p>이 여섯 가지 단절을 하나씩 이어온 이야기입니다.</p></aside>
 </section>
 
 <!-- 03 성과 지도 -->
