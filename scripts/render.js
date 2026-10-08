@@ -17,7 +17,7 @@ fs.mkdirSync(outDir, { recursive: true });
   const browser = await chromium.launch(process.env.PW_CHANNEL ? { channel: process.env.PW_CHANNEL } : {});
   const problems = [];
   for (const [w, h, tag] of [[1920, 1080, 'fhd'], [1366, 768, 'hd'], [390, 844, 'mobile']]) {
-    const page = await browser.newPage({ viewport: { width: w, height: h } });
+    const page = await browser.newPage({ viewport: { width: w, height: h }, reducedMotion: 'reduce' }); // 모션이 끝난 최종 화면을 점검
     const logs = [];
     page.on('console', (m) => { if (m.type() === 'error') logs.push(m.text()); });
     page.on('pageerror', (e) => logs.push(String(e)));
