@@ -158,6 +158,52 @@ aside.notes{display:none}
 #s12.active .pipeline > :nth-child(7){animation-delay:1.9s}#s12.active .pipeline > :nth-child(8){animation-delay:2.1s}
 #s12.active .pipeline > .step.key{animation:m-step .45s ease-out 2.3s both,m-gate 1.1s ease-out 2.75s both}
 #s12.active .pipeline > :nth-child(10){animation-delay:3.9s}#s12.active .pipeline > :nth-child(11){animation-delay:4.1s}
+@keyframes m-left{from{opacity:0;translate:-28px 0}}
+@keyframes m-right{from{opacity:0;translate:28px 0}}
+@keyframes m-strike{from{transform:scaleX(0)}}
+@keyframes m-dim{from{opacity:1}}
+@keyframes m-ring{0%{box-shadow:0 0 0 0 rgba(15,118,110,.5)}100%{box-shadow:0 0 0 16px rgba(15,118,110,0)}}
+@keyframes m-barx{from{transform:scaleX(0)}}
+/* 전후 비교(4·11·14·17장): 기존 → 화살표 → 개선 */
+.slide.active .ba > :nth-child(1){animation:m-left .55s ease-out .5s both}
+.slide.active .ba > :nth-child(2){animation:m-fade .35s 1s both}
+.slide.active .ba > :nth-child(3){animation:m-right .6s cubic-bezier(.2,.7,.2,1) 1.25s both}
+/* 단계 흐름(8·18장): 차례로 켜지고 마지막 단계에서 강조 */
+.slide.active .seq > *{animation:m-step .45s ease-out both}
+.slide.active .seq > :nth-child(1){animation-delay:.6s}.slide.active .seq > :nth-child(2){animation-delay:.8s}
+.slide.active .seq > :nth-child(3){animation-delay:1s}.slide.active .seq > :nth-child(4){animation-delay:1.2s}
+.slide.active .seq > :nth-child(5){animation-delay:1.4s}.slide.active .seq > :nth-child(6){animation-delay:1.6s}
+.slide.active .seq > :nth-child(7){animation-delay:1.8s}.slide.active .seq > :nth-child(8){animation-delay:2s}
+.slide.active .seq > .step.key{animation:m-step .45s ease-out var(--kd) both,m-gate 1.1s ease-out calc(var(--kd) + .45s) both}
+#s8 .seq{--kd:1.8s}#s18 .seq{--kd:2.2s}
+/* 11장: 10~15분에 취소선 → 1분 이내 */
+#s11 .strike,#s11 .after{font-style:normal}
+#s11 .strike{position:relative;display:inline-block}
+#s11 .strike:after{content:"";position:absolute;left:-4px;right:-4px;top:52%;height:6px;background:var(--ink);border-radius:3px;transform-origin:left}
+#s11.active .strike:after{animation:m-strike .5s ease-out .9s both}
+#s11.active .strike{animation:m-dim .4s 1.2s both}
+#s11 .strike{opacity:.45}
+#s11 .after{display:inline-block}
+#s11.active .after{animation:m-in .5s cubic-bezier(.2,.7,.2,1) 1.4s both}
+#s11.active .stat:nth-child(2){animation:m-in .5s 1.7s both}#s11.active .stat:nth-child(3){animation:m-in .5s 1.85s both}
+#s11.active .stat:nth-child(4){animation:m-in .5s 2s both}
+/* 13장: 사례 → 판단 → 예외 → 재발방지 규칙 */
+#s13.active .card{animation:m-in .5s cubic-bezier(.2,.7,.2,1) both}
+#s13.active .card:nth-child(1){animation-delay:.5s}#s13.active .card:nth-child(2){animation-delay:.85s}
+#s13.active .card:nth-child(3){animation-delay:1.2s}
+#s13.active .card:nth-child(4){animation:m-in .5s cubic-bezier(.2,.7,.2,1) 1.55s both,m-ring 1s ease-out 2.05s both}
+/* 17장: 유형별 막대가 차례로 자람 (숫자는 JS) */
+#s17 .bar-row i{transform-origin:left}
+#s17.active .bar-row i{animation:m-barx .7s cubic-bezier(.2,.7,.2,1) both}
+#s17.active .bar-row:nth-child(1) i{animation-delay:1.6s}#s17.active .bar-row:nth-child(2) i{animation-delay:1.75s}
+#s17.active .bar-row:nth-child(3) i{animation-delay:1.9s}#s17.active .bar-row:nth-child(4) i{animation-delay:2.05s}
+#s17.active .bar-row b{animation:m-fade .4s 2.4s both}
+/* 20장: 인용 → 세 가지 전환 → 이름 */
+#s20.active .quote{animation:m-in .8s cubic-bezier(.2,.7,.2,1) .3s both}
+#s20.active .grid3 .card{animation:m-in .55s cubic-bezier(.2,.7,.2,1) both}
+#s20.active .grid3 .card:nth-child(1){animation-delay:1.2s}#s20.active .grid3 .card:nth-child(2){animation-delay:1.45s}
+#s20.active .grid3 .card:nth-child(3){animation-delay:1.7s}
+#s20.active .body > p:last-child{animation:m-fade .6s 2.3s both}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -347,7 +393,7 @@ aside.notes{display:none}
   <div class="eyebrow">02-1 · AdJudge 광고판정 시스템</div>
   <h2 style="margin-bottom:28px">동일 입력, 동일 결과 — 판정과 함께 <span class="accent">근거 조문</span>을 제시합니다</h2>
   <div class="body">
-  <div class="flow" style="margin-bottom:28px">
+  <div class="flow seq" style="margin-bottom:28px">
     <div class="step"><b>입력</b><span>광고물 조건</span><small>종류·용도지역·층수·면적·조명·광고 종류</small></div><div class="arrow">→</div>
     <div class="step"><b>엔진</b><span>4단계 규칙 엔진</span><small>법령·조례·강남구 심의기준을 규칙으로 구조화</small></div><div class="arrow">→</div>
     <div class="step"><b>결과 · 1초 이내</b><span>허가·신고·불가</span><small>수수료 · 구비서류 · 근거 조문</small></div><div class="arrow">→</div>
@@ -420,7 +466,7 @@ aside.notes{display:none}
   <h2>경험에 의존하던 법령 판단을<br><span class="accent">표준화된 행정</span>으로 전환했습니다</h2>
   <div class="body">
   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:36px;margin-bottom:46px">
-    <div class="stat"><strong style="font-size:62px">10~15분<br>→ 1분 이내</strong><span>민원 검토시간</span><small>법령·조례 대조 → 판정 결과와 근거 확인</small></div>
+    <div class="stat"><strong style="font-size:62px"><em class="strike">10~15분</em><br><em class="after">→ 1분 이내</em></strong><span>민원 검토시간</span><small>법령·조례 대조 → 판정 결과와 근거 확인</small></div>
     <div class="stat"><strong>1초 이내</strong><span>허가·신고·불가 판정 산출</span><small>수수료·구비서류·근거 조문 동시 제시</small></div>
     <div class="stat"><strong>13종</strong><span>판정 대상 광고물</span><small>돌출간판·벽면이용간판·옥상간판 등</small></div>
     <div class="stat"><strong>0원</strong><span>개발예산</span><small>AI 코딩 도구로 약 35일 만에 3종 자체 구축<br>(2026. 2. 24. ~ 3. 29.)</small></div>
@@ -577,7 +623,7 @@ aside.notes{display:none}
     </div>
     <div>
       <h3>이번에도 데이터부터 봤습니다</h3>
-      <p style="margin:0 0 22px">당직일지 <b style="color:var(--ink)">2,370건</b>과 실통화 <b style="color:var(--ink)">253건</b>을 분석해 가장 잦은 민원부터 집중</p>
+      <p style="margin:0 0 22px">당직일지 <b style="color:var(--ink)" data-count-from="0" data-count-delay="600">2,370건</b>과 실통화 <b style="color:var(--ink)" data-count-from="0" data-count-delay="600">253건</b>을 분석해 가장 잦은 민원부터 집중</p>
       <div class="bars">
         <div class="bar-row"><span>도로·조명</span><i style="width:100%"></i><b>23.3%</b></div>
         <div class="bar-row"><span>청소·폐기물</span><i style="width:98.3%"></i><b>22.9%</b></div>
@@ -598,7 +644,7 @@ aside.notes{display:none}
   <div class="eyebrow">보너스 · AI 당직 설계 원칙</div>
   <h2>서버가 판단하고, AI는 듣고 말한다<br><span class="accent" style="font-size:44px">안내 문구는 사람이 쓰고, 대화만 AI가 합니다</span></h2>
   <div class="body">
-  <div class="flow" style="margin-bottom:34px">
+  <div class="flow seq" style="margin-bottom:34px">
     <div class="step"><b>전화</b><span>민원인</span><small>당직실 번호로 전화</small></div><div class="arrow">→</div>
     <div class="step"><b>교환기</b><span>Asterisk</span><small>청사 교환기에 내선 하나로 등록</small></div><div class="arrow">→</div>
     <div class="step"><b>오픈소스 음성 AI</b><span>AVA</span><small>듣고 말하기 · 원본 수정 없이 설정으로만 연결</small></div><div class="arrow">→</div>
@@ -723,26 +769,30 @@ function show(i) {
   document.getElementById('counter').textContent = `${index + 1} / ${slides.length}`;
   document.getElementById('progress').style.width = `${(index + 1) / slides.length * 100}%`;
   renderNotes();
-  countDown(slides[index]);
+  countNumbers(slides[index]);
   if (location.hash !== `#s${index + 1}`) history.replaceState(null, '', `#s${index + 1}`);
 }
-// data-count-from이 있는 숫자를 그 값에서 최종 값까지 줄인다 (최종 값은 HTML에 그대로 둔다)
+// data-count-from이 있는 숫자를 그 값에서 최종 값까지 움직인다 (최종 값은 HTML에 그대로 둔다, 시작 지연은 data-count-delay ms)
 let countRun = 0;
-function countDown(slide) {
+function countNumbers(slide) {
   const els = [...slide.querySelectorAll('[data-count-from]')];
   if (!els.length) return;
   const run = ++countRun;
   const finals = els.map((el) => el.dataset.final || (el.dataset.final = el.textContent));
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const start = performance.now() + 1400, dur = 900;
+  const t0 = performance.now(), dur = 900;
+  const num = (str) => parseFloat(str.replace(/,/g, ''));
   const tick = (now) => {
     if (run !== countRun) return;
-    const t = Math.min(Math.max((now - start) / dur, 0), 1), e = 1 - Math.pow(1 - t, 3);
+    let done = true;
     els.forEach((el, k) => {
-      const from = parseFloat(el.dataset.countFrom), to = parseFloat(finals[k]);
-      el.textContent = t === 1 ? finals[k] : (from + (to - from) * e).toFixed(1).replace(/\.0$/, '') + '건';
+      const t = Math.min(Math.max((now - t0 - (+el.dataset.countDelay || 1400)) / dur, 0), 1), e = 1 - Math.pow(1 - t, 3);
+      if (t < 1) done = false;
+      const from = num(el.dataset.countFrom), to = num(finals[k]), v = from + (to - from) * e;
+      const dec = /\.\d/.test(finals[k] + el.dataset.countFrom) ? 1 : 0;
+      el.textContent = t === 1 ? finals[k] : (dec ? v.toFixed(1).replace(/\.0$/, '') : Math.round(v).toLocaleString('en-US')) + finals[k].replace(/^[\d.,]+/, '');
     });
-    if (t < 1) requestAnimationFrame(tick);
+    if (!done) requestAnimationFrame(tick);
   };
   requestAnimationFrame(tick);
 }
