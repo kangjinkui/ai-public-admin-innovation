@@ -10,7 +10,7 @@ const errors = [];
 const fail = (msg) => errors.push(msg);
 
 // 1) 장수·id
-const EXPECTED_SLIDES = 21;
+const EXPECTED_SLIDES = 20;
 const ids = [...html.matchAll(/<section class="slide[^"]*" id="([^"]+)"/g)].map((m) => m[1]);
 if (ids.length !== EXPECTED_SLIDES) fail(`슬라이드 ${EXPECTED_SLIDES}장 기대, 실제 ${ids.length}장`);
 if (new Set(ids).size !== ids.length) fail('슬라이드 id 중복');
