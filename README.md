@@ -1,6 +1,6 @@
 # 행정을 잇는 공공개발의 달인 — 발표자료 v2
 
-제16회 지방행정의 달인 현장실사 발표용 HTML 슬라이드입니다(본편 17장 + 보너스 3장 + 부록 1장, 총 21장). 빌드 과정이 없는 정적 페이지라 `index.html`을 브라우저로 바로 열면 됩니다.
+제16회 지방행정의 달인 발표용 HTML 슬라이드입니다(본편 17장 + 보너스 3장 + 부록 1장, 총 21장). 빌드 과정이 없는 정적 페이지라 `index.html`을 브라우저로 바로 열면 됩니다.
 
 - 웹: https://ai-public-admin-innovation.vercel.app/
 - PDF: [`presentation.pdf`](presentation.pdf) (하단 컨트롤의 PDF 버튼으로도 받을 수 있음)
