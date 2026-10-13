@@ -94,7 +94,7 @@ aside.notes{display:none}
 .bar-row i{display:block;height:30px;border-radius:0 6px 6px 0;background:var(--accent)}
 .bar-row b{font-family:"Noto Serif KR",serif;font-size:26px;color:var(--accent);text-align:right}
 /* 컨트롤 */
-#controls{position:fixed;z-index:60;left:50%;bottom:14px;transform:translateX(-50%);display:flex;align-items:center;gap:4px;padding:6px 10px;border-radius:999px;background:rgba(13,22,40,.92);color:#fff;opacity:0;transition:opacity .2s}
+#controls{position:fixed;z-index:60;left:50%;bottom:48px;transform:translateX(-50%);display:flex;align-items:center;gap:4px;padding:6px 10px;border-radius:999px;background:rgba(13,22,40,.92);color:#fff;opacity:0;transition:opacity .2s}
 #controls.visible,#controls:hover,#controls:focus-within,body.panel-open #controls{opacity:1}
 #controls button{min-width:40px;height:36px;padding:0 10px;border:0;border-radius:18px;background:transparent;color:#fff;cursor:pointer;font-size:14px}
 #controls button:hover,#controls button:focus-visible{background:var(--accent);outline:none}
@@ -107,7 +107,7 @@ aside.notes{display:none}
 .thumb{aspect-ratio:16/9;background:var(--paper);color:var(--ink);padding:20px;border:2px solid transparent;border-radius:10px;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:8px}
 .thumb:hover,.thumb:focus-visible{border-color:var(--accent);outline:none}
 .thumb b{color:var(--accent);font-size:14px}.thumb strong{font-size:20px;line-height:1.3}
-#notesPanel{position:fixed;z-index:40;left:0;right:0;bottom:0;max-height:38vh;overflow:auto;display:none;background:rgba(13,22,40,.96);color:#eef1f7;padding:20px 28px 64px;font-size:18px;line-height:1.7;border-top:3px solid var(--accent)}
+#notesPanel{position:fixed;z-index:40;left:0;right:0;bottom:0;max-height:38vh;overflow:auto;display:none;background:rgba(13,22,40,.96);color:#eef1f7;padding:20px 28px 104px;font-size:18px;line-height:1.7;border-top:3px solid var(--accent)}
 #notesPanel.open{display:block}
 #notesPanel h4{margin:0 0 6px;font-size:14px;letter-spacing:.08em;color:#8fd3c9}
 #notesPanel p{color:#eef1f7;font-size:18px;margin:0 0 8px}
@@ -116,7 +116,7 @@ aside.notes{display:none}
   html,body,#viewport{width:auto;height:auto;overflow:visible;background:#fff}
   #deck{position:static;transform:none!important;width:1920px;height:auto}
   .slide{position:relative;display:flex!important;flex-direction:column;width:1920px;height:1080px;break-after:page}
-  #controls,#progress,#overview,#notesPanel,.live{display:none!important}
+  #presentationTimer,#controls,#progress,#overview,#notesPanel,.live{display:none!important}
   *{animation:none!important}
 }
 /* 모션: 장에 들어올 때마다 다시 재생. 기본 상태가 최종 화면이므로 애니메이션을 끄면 그대로 보인다 */
@@ -704,6 +704,12 @@ aside.notes{display:none}
 
 </div></div>
 
+<div id="presentationTimer" role="group" aria-label="5? ?? ???">
+  <span id="timerLabel" role="status">?? ??</span>
+  <span id="timerDisplay" role="timer" aria-label="?? ?? ??" aria-live="off">05:00</span>
+  <button id="timerToggle" type="button">??</button>
+  <button id="timerReset" type="button" aria-label="?? ??? 5??? ???">???</button>
+</div>
 <div id="progress"></div>
 <nav id="controls" aria-label="발표 제어">
   <button id="prev" type="button" aria-label="이전 슬라이드">‹</button>
@@ -730,10 +736,11 @@ const store = {
 let index = 0, timer, touchX = 0;
 
 function fit() {
-  const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+  const availableHeight = Math.max(0, innerHeight - 40);
+  const s = Math.min(innerWidth / 1920, availableHeight / 1080);
   deck.style.transform = `scale(${s})`;
   deck.style.left = `${(innerWidth - 1920 * s) / 2}px`;
-  deck.style.top = `${(innerHeight - 1080 * s) / 2}px`;
+  deck.style.top = `${(availableHeight - 1080 * s) / 2}px`;
 }
 function renderNotes() {
   const s = slides[index];
@@ -817,7 +824,7 @@ addEventListener('touchend', (e) => {
   if (Math.abs(d) > 60) show(index + (d < 0 ? 1 : -1));
 }, { passive: true });
 addEventListener('keydown', (e) => {
-  if (e.target.closest && e.target.closest('input, textarea')) return;
+  if (e.target.closest && e.target.closest('input, textarea, #presentationTimer')) return;
   if (e.key === 'Escape') {
     if (overview.classList.contains('open')) toggleOverview();
     else if (notesPanel.classList.contains('open')) toggleNotes(false);
@@ -831,6 +838,57 @@ addEventListener('keydown', (e) => {
   else if (e.key.toLowerCase() === 'o') toggleOverview();
   else if (e.key.toLowerCase() === 'n') toggleNotes();
 });
+
+// Use a deadline so delayed/background ticks do not extend the five minutes.
+const timerBar = document.getElementById('presentationTimer');
+const timerDisplay = document.getElementById('timerDisplay');
+const timerToggle = document.getElementById('timerToggle');
+const timerLabel = document.getElementById('timerLabel');
+let remainingMs = 300000, deadline = null, countdownInterval = null;
+function renderCountdown() {
+  if (deadline !== null) remainingMs = Math.max(0, deadline - Date.now());
+  const seconds = Math.ceil(remainingMs / 1000);
+  timerDisplay.textContent = String(Math.floor(seconds / 60)).padStart(2, '0') + ':' + String(seconds % 60).padStart(2, '0');
+  if (remainingMs === 0) {
+    clearInterval(countdownInterval);
+    countdownInterval = null;
+    deadline = null;
+    timerToggle.textContent = '?? ??';
+    timerLabel.textContent = '?? ??';
+    timerBar.classList.add('expired');
+  }
+}
+timerToggle.onclick = () => {
+  if (deadline !== null) {
+    renderCountdown();
+    clearInterval(countdownInterval);
+    countdownInterval = null;
+    deadline = null;
+    if (remainingMs > 0) {
+      timerToggle.textContent = '??';
+      timerLabel.textContent = '????';
+    }
+  } else {
+    if (remainingMs === 0) remainingMs = 300000;
+    deadline = Date.now() + remainingMs;
+    timerToggle.textContent = '????';
+    timerLabel.textContent = '?? ??';
+    timerBar.classList.remove('expired');
+    renderCountdown();
+    countdownInterval = setInterval(renderCountdown, 200);
+  }
+};
+document.getElementById('timerReset').onclick = () => {
+  clearInterval(countdownInterval);
+  countdownInterval = null;
+  deadline = null;
+  remainingMs = 300000;
+  timerToggle.textContent = '??';
+  timerLabel.textContent = '?? ??';
+  timerBar.classList.remove('expired');
+  renderCountdown();
+};
+document.addEventListener('visibilitychange', renderCountdown);
 
 const hash = parseInt(location.hash.replace('#s', ''), 10);
 if (Number.isInteger(hash)) index = hash - 1;
