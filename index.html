@@ -93,6 +93,13 @@ aside.notes{display:none}
 .bar-row span{font-weight:700;color:var(--ink2)}
 .bar-row i{display:block;height:30px;border-radius:0 6px 6px 0;background:var(--accent)}
 .bar-row b{font-family:"Noto Serif KR",serif;font-size:26px;color:var(--accent);text-align:right}
+/* 발표 타이머: 본문 밖의 전용 하단 공간 */
+#presentationTimer{position:fixed;z-index:65;bottom:0;left:0;right:0;height:40px;display:flex;align-items:center;justify-content:center;gap:10px;background:#0d1628;color:#b9c4d5;font-size:12px}
+#timerDisplay{font-size:17px;font-weight:700;font-variant-numeric:tabular-nums;color:#eef1f7;min-width:48px;text-align:center}
+#presentationTimer.expired #timerDisplay{color:#f6bb8f}
+#presentationTimer button{font:inherit;color:#dce4ef;background:transparent;border:1px solid #435067;border-radius:5px;padding:3px 9px;cursor:pointer}
+#presentationTimer button:hover{background:#26344a}
+#presentationTimer button:focus-visible{outline:2px solid #8fd3c9;outline-offset:2px}
 /* 컨트롤 */
 #controls{position:fixed;z-index:60;left:50%;bottom:48px;transform:translateX(-50%);display:flex;align-items:center;gap:4px;padding:6px 10px;border-radius:999px;background:rgba(13,22,40,.92);color:#fff;opacity:0;transition:opacity .2s}
 #controls.visible,#controls:hover,#controls:focus-within,body.panel-open #controls{opacity:1}
@@ -704,11 +711,11 @@ aside.notes{display:none}
 
 </div></div>
 
-<div id="presentationTimer" role="group" aria-label="5? ?? ???">
-  <span id="timerLabel" role="status">?? ??</span>
-  <span id="timerDisplay" role="timer" aria-label="?? ?? ??" aria-live="off">05:00</span>
-  <button id="timerToggle" type="button">??</button>
-  <button id="timerReset" type="button" aria-label="?? ??? 5??? ???">???</button>
+<div id="presentationTimer" role="group" aria-label="5분 발표 타이머">
+  <span id="timerLabel" role="status">발표 시간</span>
+  <span id="timerDisplay" role="timer" aria-label="남은 발표 시간" aria-live="off">05:00</span>
+  <button id="timerToggle" type="button">시작</button>
+  <button id="timerReset" type="button" aria-label="발표 타이머 5분으로 초기화">초기화</button>
 </div>
 <div id="progress"></div>
 <nav id="controls" aria-label="발표 제어">
@@ -853,8 +860,8 @@ function renderCountdown() {
     clearInterval(countdownInterval);
     countdownInterval = null;
     deadline = null;
-    timerToggle.textContent = '?? ??';
-    timerLabel.textContent = '?? ??';
+    timerToggle.textContent = '다시 시작';
+    timerLabel.textContent = '발표 종료';
     timerBar.classList.add('expired');
   }
 }
@@ -865,14 +872,14 @@ timerToggle.onclick = () => {
     countdownInterval = null;
     deadline = null;
     if (remainingMs > 0) {
-      timerToggle.textContent = '??';
-      timerLabel.textContent = '????';
+      timerToggle.textContent = '계속';
+      timerLabel.textContent = '일시정지';
     }
   } else {
     if (remainingMs === 0) remainingMs = 300000;
     deadline = Date.now() + remainingMs;
-    timerToggle.textContent = '????';
-    timerLabel.textContent = '?? ??';
+    timerToggle.textContent = '일시정지';
+    timerLabel.textContent = '남은 시간';
     timerBar.classList.remove('expired');
     renderCountdown();
     countdownInterval = setInterval(renderCountdown, 200);
@@ -883,8 +890,8 @@ document.getElementById('timerReset').onclick = () => {
   countdownInterval = null;
   deadline = null;
   remainingMs = 300000;
-  timerToggle.textContent = '??';
-  timerLabel.textContent = '?? ??';
+  timerToggle.textContent = '시작';
+  timerLabel.textContent = '발표 시간';
   timerBar.classList.remove('expired');
   renderCountdown();
 };
